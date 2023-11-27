@@ -6,9 +6,9 @@ import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
 export const config = {
-    providers: [Google({ clientId: process.env.GOOGLE_CLIENT_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET }),],
-    adapter: PrismaAdapter(prisma),
-    session: { strategy: "jwt" },
+  adapter: PrismaAdapter(prisma),
+  providers: [Google({ clientId: process.env.GOOGLE_CLIENT_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET }),],
+  session: { strategy: "jwt" },
 } satisfies NextAuthConfig
 
 export const { handlers: { GET, POST }, auth, signIn, signOut } = NextAuth(config)
