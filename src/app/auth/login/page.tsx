@@ -1,8 +1,12 @@
+'use client'
 import { FaGoogle, FaMicrosoft } from "react-icons/fa6";
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
-export default function Example() {
+export default async function Example() {
+
   return (
     <>
       <div className="flex min-h-screen flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -97,13 +101,14 @@ export default function Example() {
                   <span className="text-sm font-semibold leading-6">Microsoft</span>
                 </Link>
 
-                <Link
-                  href="#"
+
+                <button
+                  onClick={() => signIn()}
                   className="flex w-full items-center justify-center gap-3 rounded-md bg-[#333333] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]"
                 >
                   <FaGoogle className="h-5 w-5" />
                   <span className="text-sm font-semibold leading-6">Google</span>
-                </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -114,7 +119,7 @@ export default function Example() {
             </Link>
           </p>
         </div>
-      </div>
+      </div >
     </>
   )
 }
