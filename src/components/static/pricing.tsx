@@ -143,7 +143,8 @@ export default function Example() {
                 >
                   {typeof tier.price === "string"
                     ? tier.price
-                    : tier.price[frequency.value]}
+                    : // : tier.price[frequency.value]}
+                      tier.price[frequency.value as keyof typeof tier.price]}
                 </span>
                 {typeof tier.price !== "string" ? (
                   <span
