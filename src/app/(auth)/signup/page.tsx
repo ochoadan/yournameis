@@ -33,7 +33,7 @@ export default async function Example() {
           <p className="mt-10 text-center text-sm text-gray-500">
             Already a member?{" "}
             <Link
-              href="/auth/login"
+              href="/login"
               className="font-semibold leading-6 text-sky-600 hover:text-sky-500"
             >
               Log In
