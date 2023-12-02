@@ -1,8 +1,8 @@
 // import SigninButton from "./SigninButton";
 
 import Link from "next/link";
-import SigninButton from "./SigninButton";
-import { Logo } from "./Logo";
+import SigninButton from "../SigninButton";
+import { Logo } from "../Logo";
 
 const navigation = [
   { name: "Pricing", href: "#pricing" },

@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 export const GET = auth(async (request) => {
   if (request.auth) {
-    const { name, email, company, message } = await request.json();
+    const { message, lastname } = await request.json();
 
     let transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
@@ -17,11 +17,13 @@ export const GET = auth(async (request) => {
     let mailOptions = {
       from: "contact-form@halfnine.com",
       to: "dan@halfnine.tech",
-      subject: `Domain Request From ${request.auth.user?.name}`,
-      text: message + " | Sent from: " + email,
+      subject: `Domain Request From: ${request.auth.user?.name}`,
+      text: lastname + " | Sent from: " + request.auth.user?.email,
       html: `<div>Message From: ${
-        request.auth
-      }</div><p>Company: ${Response.json({ data: "Protected data" })}</p>`,
+        request.auth.user?.name
+      }</div><p>Name Request: ${lastname}</p><p>Message: ${message}</p><p>Data: ${Response.json({
+        data: "Protected data",
+      })}</p>`,
     };
     try {
       await transporter.sendMail(mailOptions);

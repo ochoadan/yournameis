@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/static/Header";
 import Footer from "@/components/static/footer";
 import Hero from "@/components/static/hero";
 import Pricing from "@/components/static/pricing";
@@ -15,7 +15,7 @@ const Page = () => {
   return (
     <>
       <Header />
-      <div className="bg-white py-16 md:py-32 px-6 lg:px-8 max-w-8xl mx-auto">
+      <div className="bg-white py-16 md:py-32 mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
         <Hero />
       </div>
       <Pricing />

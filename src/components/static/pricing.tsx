@@ -50,6 +50,7 @@ const tiers = [
     // description: "Dedicated support and infrastructure for your company.",
     description: "Coming soon!",
     features: [
+      "3 Adresses Included",
       "Mailbox Included",
       "1TB+ Storage",
       "Root, blog and www Access",
