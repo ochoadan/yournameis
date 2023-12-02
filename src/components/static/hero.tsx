@@ -139,7 +139,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="mt-4">
-          Didn't find your last name? Make a request and get it within a day
+          Didn&apos;t find your last name? Make a request and get it within a day
         </div>
       </div>
       <div className="col-span-5 hidden lg:block">
