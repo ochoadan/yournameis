@@ -13,7 +13,7 @@ const Page = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth();
 
   if (!session) {
-    redirect("/");
+    redirect("/login");
   }
   return (
     <SessionProvider session={session}>

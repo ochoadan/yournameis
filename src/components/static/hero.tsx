@@ -19,6 +19,7 @@ const domains = [
   { id: 10, name: "barklow.com" },
   { id: 11, name: "ahmad.top" },
 ];
+
 export default function Hero() {
   const [selected, setSelected] = useState(domains[0]);
   const [query, setQuery] = useState("");
