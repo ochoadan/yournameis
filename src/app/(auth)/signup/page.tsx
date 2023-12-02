@@ -4,6 +4,7 @@ import { auth } from "auth";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
 import SignUpAuthUserForm from "@/components/auth/SignUpAuthUserForm";
+import { ExclamationTriangleIcon } from "@heroicons/react/20/solid";
 
 export const metadata: Metadata = {
   title: "Sign Up",
@@ -24,6 +25,21 @@ export default async function Example() {
         <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Create a new account
         </h2>
+        <div className="rounded-md bg-yellow-50 p-4 mt-2">
+          <div className="flex justify-center">
+            <div className="flex-shrink-0">
+              <ExclamationTriangleIcon
+                className="h-5 w-5 text-yellow-400"
+                aria-hidden="true"
+              />
+            </div>
+            <div className="ml-3">
+              <h3 className="text-sm font-medium text-yellow-800">
+                Please use Google to Sign Up
+              </h3>
+            </div>
+          </div>
+        </div>
       </div>
 
       <SignUpAuthUserForm />

@@ -5,8 +5,7 @@ import SigninButton from "./SigninButton";
 import { Logo } from "./Logo";
 
 const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
+  { name: "Pricing", href: "#pricing" },
   { name: "Marketplace", href: "#" },
   { name: "Company", href: "#" },
 ];

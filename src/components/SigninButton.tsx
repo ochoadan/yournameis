@@ -8,7 +8,7 @@ export default async function SigninButton() {
       <div className="flex flex-1 items-center justify-end gap-x-6">
         <p className="text-gray-900 text-sm lg:font-semibold">{session.user.name}</p>
         <Link
-          href="/email"
+          href="/dashboard"
           className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900"
         >
           Dashboard

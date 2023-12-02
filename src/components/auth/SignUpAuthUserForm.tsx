@@ -27,7 +27,8 @@ export default async function Example() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                  disabled
+                  className="cursor-not-allowed block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -46,7 +47,8 @@ export default async function Example() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                  disabled
+                  className="cursor-not-allowed block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -80,7 +82,8 @@ export default async function Example() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-sky-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+                disabled
+                className="cursor-not-allowed flex w-full justify-center rounded-md bg-sky-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
               >
                 Sign in
               </button>
@@ -102,8 +105,9 @@ export default async function Example() {
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-4">
-              <Link
+            {/* <div className="mt-6 grid grid-cols-2 gap-4"> */}
+            <div className="mt-6 grid gap-4">
+              {/* <Link
                 href="#"
                 className="flex w-full items-center justify-center gap-3 rounded-md bg-[#333333] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D9BF0]"
               >
@@ -111,7 +115,7 @@ export default async function Example() {
                 <span className="text-sm font-semibold leading-6">
                   Microsoft
                 </span>
-              </Link>
+              </Link> */}
 
               {/* <form
                   action={async () => {

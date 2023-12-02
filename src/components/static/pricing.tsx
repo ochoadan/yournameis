@@ -46,13 +46,13 @@ const tiers = [
     name: "Executive",
     id: "tier-enterprise",
     href: "#",
-    price: "Custom",
+    price: { monthly: "$20", annually: "$200" },
     // description: "Dedicated support and infrastructure for your company.",
     description: "Coming soon!",
     features: [
       "Mailbox Included",
       "1TB+ Storage",
-      "TLD Custom Domain",
+      "Root, blog and www Access",
       "SMTP Access",
       "Support from friendly humans",
     ],
@@ -69,7 +69,7 @@ export default function Example() {
   const [frequency, setFrequency] = useState(frequencies[0]);
 
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className="bg-white py-24 sm:py-32" id="pricing">
       <div className="mx-auto max-w-8xl px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
