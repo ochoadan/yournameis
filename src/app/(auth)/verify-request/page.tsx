@@ -3,7 +3,7 @@ import { Logo } from "@/components/Logo";
 import { auth } from "auth";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
-import LoginAuthUserForm from "@/components/auth/LoginAuthUserForm";
+import SigninAuthUserForm from "@/components/auth/SigninAuthUserForm";
 import { ExclamationTriangleIcon } from "@heroicons/react/20/solid";
 
 export const metadata: Metadata = {
@@ -49,13 +49,13 @@ export default async function Example() {
         </div>
       </div>
 
-      <LoginAuthUserForm />
+      <SigninAuthUserForm />
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
         <p className="mt-10 text-center text-sm text-gray-500">
           Not a member?{" "}
           <Link
-            href="/signup"
+            href="/sogmom"
             className="font-semibold leading-6 text-sky-600 hover:text-sky-500"
           >
             Create Account

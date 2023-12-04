@@ -3,11 +3,12 @@
 import Link from "next/link";
 import SigninButton from "../SigninButton";
 import { Logo } from "../Logo";
+import CustomLink from "@/components/custom-link";
 
 const navigation = [
   { name: "Pricing", href: "#pricing" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
+  { name: "Services", href: "https://www.halfnine.com" },
+  // { name: "Company", href: "#" },
 ];
 
 const Appbar = () => {
@@ -24,13 +25,13 @@ const Appbar = () => {
       </div>
       <div className="hidden lg:flex lg:gap-x-12">
         {navigation.map((item) => (
-          <Link
+          <CustomLink
             key={item.name}
             href={item.href}
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             {item.name}
-          </Link>
+          </CustomLink>
         ))}
       </div>
       <SigninButton />
