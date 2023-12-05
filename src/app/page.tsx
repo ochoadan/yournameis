@@ -13,14 +13,14 @@ export const metadata: Metadata = {
 
 const Page = () => {
   return (
-    <>
+    <div className="bg-white">
       <Header />
-      <div className="bg-white py-16 md:py-32 mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
+      <div className="py-16 md:py-32 mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
         <Hero />
       </div>
       <Pricing />
       <Footer />
-    </>
+    </div>
   );
 };
 

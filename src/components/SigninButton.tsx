@@ -6,9 +6,9 @@ export default async function SigninButton() {
   if (session && session.user) {
     return (
       <div className="flex flex-1 items-center justify-end gap-x-6">
-        <p className="text-gray-900 text-sm lg:font-semibold">
+        {/* <p className="text-gray-900 text-sm lg:font-semibold">
           {session.user.name}
-        </p>
+        </p> */}
         <Link
           href="/dashboard"
           className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900"

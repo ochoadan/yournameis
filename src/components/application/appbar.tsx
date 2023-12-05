@@ -11,10 +11,8 @@ import { Logo } from "../Logo";
 import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import clsx from "clsx";
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(" ");
-}
 const PagesNav = () => {
   const pathname = usePathname();
   const Linkx = ({
@@ -145,7 +143,7 @@ const AppBarNav = () => {
                           {({ active }) => (
                             <Link
                               href="#"
-                              className={classNames(
+                              className={clsx(
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700",
@@ -160,7 +158,7 @@ const AppBarNav = () => {
                           {({ active }) => (
                             <Link
                               href="/support"
-                              className={classNames(
+                              className={clsx(
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700",
@@ -178,7 +176,7 @@ const AppBarNav = () => {
                             <button
                               type="submit"
                               onClick={() => signOut()}
-                              className={classNames(
+                              className={clsx(
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700",
@@ -224,7 +222,7 @@ const AppBarNav = () => {
                           {({ active }) => (
                             <a
                               href="#"
-                              className={classNames(
+                              className={clsx(
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700",
@@ -239,7 +237,7 @@ const AppBarNav = () => {
                           {({ active }) => (
                             <a
                               href="#"
-                              className={classNames(
+                              className={clsx(
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700",
@@ -254,7 +252,7 @@ const AppBarNav = () => {
                           {({ active }) => (
                             <a
                               href="#"
-                              className={classNames(
+                              className={clsx(
                                 active
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700",
@@ -272,7 +270,7 @@ const AppBarNav = () => {
                             {({ active }) => (
                               <button
                                 type="submit"
-                                className={classNames(
+                                className={clsx(
                                   active
                                     ? "bg-gray-100 text-gray-900"
                                     : "text-gray-700",

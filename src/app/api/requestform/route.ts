@@ -21,7 +21,7 @@ export const GET = auth(async (request) => {
       text: lastname + " | Sent from: " + request.auth.user?.email,
       html: `<div>Message From: ${
         request.auth.user?.name
-      }</div><p>Name Request: ${lastname}</p><p>Message: ${message}</p><p>Data: ${Response.json({
+      }</div><p>Name Request: ${lastname}</p><p>Message: ${message}</p><p>Data: ${JSON.stringify({
         data: "Protected data",
       })}</p>`,
     };
