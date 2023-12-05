@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { Combobox } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
@@ -57,7 +56,7 @@ const EmailCreate = () => {
         <MdOutlineAlternateEmail />
       </div>
       <Combobox value={selected} onChange={setSelected}>
-        <div className="min-w-0 flex-1 relative">
+        <div className="min-w-0 flex-1 relative z-50">
           <div className="relative w-full cursor-default rounded-lg bg-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-sky-300 sm:text-sm">
             <Combobox.Label
               htmlFor="name"

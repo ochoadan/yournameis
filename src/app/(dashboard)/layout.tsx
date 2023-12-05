@@ -18,7 +18,7 @@ const Page = async ({ children }: { children: React.ReactNode }) => {
   return (
     <SessionProvider session={session}>
       <Appbar />
-      <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8 mt-12">
+      <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8 my-12">
         {/* <div className="mx-auto max-w-3xl"> */}
         {children}
       </div>

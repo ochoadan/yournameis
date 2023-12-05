@@ -38,7 +38,7 @@ const PagesNav = () => {
     <>
       <Linkx href="/dashboard">Dashboard</Linkx>
       <Linkx href="/billing">Billing</Linkx>
-      <Linkx href="/affiliates">Affiliates</Linkx>
+      {/* <Linkx href="/affiliates">Affiliates</Linkx> */}
     </>
   );
 };
@@ -142,7 +142,7 @@ const AppBarNav = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              href="#"
+                              href="/settings"
                               className={clsx(
                                 active
                                   ? "bg-gray-100 text-gray-900"
@@ -157,7 +157,23 @@ const AppBarNav = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              href="/support"
+                              href="/affiliates"
+                              className={clsx(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              Referalls
+                            </Link>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link
+                              href="https://www.halfnine.com/contact"
+                              target="_blank"
                               className={clsx(
                                 active
                                   ? "bg-gray-100 text-gray-900"
