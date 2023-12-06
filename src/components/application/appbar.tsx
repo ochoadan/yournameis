@@ -38,7 +38,7 @@ const PagesNav = () => {
     <>
       <Linkx href="/dashboard">Dashboard</Linkx>
       <Linkx href="/billing">Billing</Linkx>
-      <Linkx href="/requests">Requests</Linkx>
+      {/* <Linkx href="/affiliates">Affiliates</Linkx> */}
     </>
   );
 };
@@ -150,7 +150,7 @@ const AppBarNav = () => {
                                 "block px-4 py-2 text-sm"
                               )}
                             >
-                              Account Settings
+                              Account settings
                             </Link>
                           )}
                         </Menu.Item>
