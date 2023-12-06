@@ -6,17 +6,17 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 
 const domains = [
-  { id: 1, name: "nibarger.com" },
-  { id: 2, name: "witner.com" },
+  { id: 1, name: "ahmad.top" },
+  { id: 2, name: "barklow.com" },
   { id: 3, name: "brigidi.com" },
-  { id: 4, name: "ilges.com" },
-  { id: 5, name: "rudicil.com" },
-  { id: 6, name: "ellifritz.com" },
-  { id: 7, name: "englett.com" },
-  { id: 8, name: "maddry.com" },
+  { id: 4, name: "ellifritz.com" },
+  { id: 5, name: "englett.com" },
+  { id: 6, name: "ilges.com" },
+  { id: 7, name: "maddry.com" },
+  { id: 8, name: "nibarger.com" },
   { id: 9, name: "padgette.com" },
-  { id: 10, name: "barklow.com" },
-  { id: 11, name: "ahmad.top" },
+  { id: 10, name: "rudicil.com" },
+  { id: 11, name: "witner.com" },
 ];
 
 domains.sort((a, b) => a.name.localeCompare(b.name));
