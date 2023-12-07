@@ -1,32 +1,15 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import {  useState } from "react";
 import EmailCreate from "@/components/EmailCreate";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
-const people = [
-  {
-    name: "Michael Foster",
-    email: "michael.foster@example.com",
-    role: "Co-Founder / CTO",
-    href: "#",
-    lastSeen: "3h ago",
-    lastSeenDateTime: "2023-01-23T13:23Z",
-  },
-  {
-    name: "Dries Vincent",
-    email: "dries.vincent@example.com",
-    role: "Business Relations",
-    href: "#",
-    lastSeen: null,
-  },
-];
-
 const Page = () => {
-  const { data: session } = useSession();
 
+  const { data: session } = useSession();
   const [appCreate, setAppCreate] = useState(false);
+  
   return (
     <>
       <ul

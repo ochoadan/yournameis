@@ -24,36 +24,37 @@ export const config = {
     //   from: process.env.EMAIL_FROM,
     // }),
   ],
-  session: { strategy: "jwt" },
-  // events: {
-  //   createUser: async ({ user }) => {
-  //     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  //       apiVersion: "2023-10-16",
-  //     });
+  secret: process.env.AUTH_SECRET,
+  callbacks: {
+    async session({ session, user }) {
+      session!.user!.id = user.id;
+      session!.user!.stripeCustomerId = user.stripeCustomerId;
+      session!.user!.isActive = user.isActive;
+      return session;
+    },
+  },
+  events: {
+    createUser: async ({ user }) => {
+      const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+        apiVersion: "2023-10-16",
+      });
 
-  //     await stripe.customers
-  //       .create({
-  //         email: user.email!,
-  //         name: user.name!,
-  //       })
-  //       .then(async (customer) => {
-  //         return prisma.user.update({
-  //           where: { id: user.id },
-  //           data: {
-  //             stripeCustomerId: customer.id,
-  //           },
-  //         });
-  //       });
-  //   },
-  // },
-  // callbacks: {
-  //   async session({ session, user }) {
-  //     if (session?.user) {
-  //       session.user.id = user.id;
-  //     }
-  //     return session;
-  //   },
-  // },
+      await stripe.customers
+        .create({
+          email: user.email!,
+          name: user.name!,
+        })
+        .then(async (customer) => {
+          return prisma.user.update({
+            where: { id: user.id },
+            data: {
+              stripeCustomerId: customer.id,
+            },
+          });
+        });
+    },
+  },
+  // session: { strategy: "jwt" }, // Breaking on session callback
 } satisfies NextAuthConfig;
 
 export const {
