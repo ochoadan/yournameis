@@ -142,7 +142,7 @@ const AppBarNav = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              href="/settings"
+                              href="/request"
                               className={clsx(
                                 active
                                   ? "bg-gray-100 text-gray-900"
@@ -150,10 +150,11 @@ const AppBarNav = () => {
                                 "block px-4 py-2 text-sm"
                               )}
                             >
-                              Account settings
+                              Request
                             </Link>
                           )}
                         </Menu.Item>
+
                         <Menu.Item>
                           {({ active }) => (
                             <Link
@@ -187,6 +188,21 @@ const AppBarNav = () => {
                         </Menu.Item>
                       </div>
                       <div className="py-1">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link
+                              href="/settings"
+                              className={clsx(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              Account Settings
+                            </Link>
+                          )}
+                        </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
                             <button

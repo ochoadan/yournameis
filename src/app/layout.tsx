@@ -6,7 +6,7 @@ const inter = Mulish({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "VirtuaByte",
-  description: "VirtuaByte provides business email for the individual.",
+  description: "VirtuaByte provides business email for individuals.",
 };
 
 export default function RootLayout({

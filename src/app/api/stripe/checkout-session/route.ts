@@ -24,6 +24,24 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  if (session.user.isActive) {
+    return NextResponse.json(
+      {
+        error: {
+          code: "already-active",
+          message: "You are already an active subscriber.",
+        },
+      },
+      { status: 409 }
+    );
+    // TODO: implement billing portal
+    // const activeSession = await stripe.billingPortal.sessions.create({
+    //   customer: session.user.stripeCustomerId,
+    //   return_url: `${process.env.NEXTAUTH_URL}/billing`,
+    // });
+    // return NextResponse.json({ session: activeSession }, { status: 200 });
+  }
+
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: "subscription",
     customer: session.user.stripeCustomerId,

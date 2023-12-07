@@ -2,8 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import getStripe from "@/utils/getStripe";
-import clsx from "clsx";
-import React from "react";
 
 interface FreelancerCheckoutButtonProps {
   className: string;
@@ -15,44 +13,59 @@ const FreelancerCheckoutButton: React.FC<FreelancerCheckoutButtonProps> = ({
   children,
 }) => {
   const router = useRouter();
-  const plan = "price_1OKiQwHaJCks5lGVmAtPHZsq";
+  const plan = process.env.NEXT_PUBLIC_STRIPE_API_ID_FY!;
 
   const handleCreateCheckoutSession = async (productId: string) => {
-    const res = await fetch(`/api/stripe/checkout-session`, {
-      method: "POST",
-      body: JSON.stringify(productId),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    try {
+      const res = await fetch(`/api/stripe/checkout-session`, {
+        method: "POST",
+        body: JSON.stringify(productId),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-    if (res.status === 401) {
-      router.push("/signin");
-      return;
+      if (res.status === 401) {
+        router.push("/signin");
+        return;
+      }
+
+      if (res.status === 409) {
+        router.push("/dashboard");
+        return;
+      }
+
+      const checkoutSession = await res.json().then((value) => {
+        return value.session;
+      });
+
+      const stripe = await getStripe();
+      const { error } = await stripe!.redirectToCheckout({
+        sessionId: checkoutSession.id,
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+    } catch (error: any) {
+      console.error("An error occurred:", error.message);
     }
-
-    const checkoutSession = await res.json().then((value) => {
-      return value.session;
-    });
-
-    const stripe = await getStripe();
-    const { error } = await stripe!.redirectToCheckout({
-      sessionId: checkoutSession.id,
-    });
-
-    console.warn(error.message);
   };
+  // if (session && session.user.isActive) {
+  //   return (
+
+  //   );
+  // }
 
   return (
-    <button
-      className={clsx(
-        // "bg-slate-100 hover:bg-slate-200 text-black px-6 py-2 rounded-md capitalize font-bold mt-1",
-        className
-      )}
-      onClick={() => handleCreateCheckoutSession(plan)}
-    >
-      {children}
-    </button>
+    <>
+      <button
+        className={className}
+        onClick={() => handleCreateCheckoutSession(plan)}
+      >
+        {children}
+      </button>
+    </>
   );
 };
 

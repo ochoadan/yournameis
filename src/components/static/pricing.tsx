@@ -52,14 +52,14 @@ export default function Example() {
                   className="text-sky-600 h-6 w-5 flex-none"
                   aria-hidden="true"
                 />
-                Spam & Virus protection
+                Spam & Virus protection (Coming soon)
               </li>
               <li className="flex gap-x-3">
                 <CheckIcon
                   className="text-sky-600 h-6 w-5 flex-none"
                   aria-hidden="true"
                 />
-                Redirect Subdomain
+                Redirect Subdomain (Coming soon)
               </li>
             </ul>
           </div>

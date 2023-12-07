@@ -7,8 +7,8 @@ import { XMarkIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Virtuabyte - Business Email for the Individual",
-  description: "Virtuabyte is a business email service for the individual.",
+  title: "Virtuabyte - Business Email for Individuals",
+  description: "Virtuabyte is a business email service for individuals.",
 };
 
 const Page = () => {
