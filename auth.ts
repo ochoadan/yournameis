@@ -30,7 +30,14 @@ export const config = {
       session!.user!.id = user.id;
       session!.user!.stripeCustomerId = user.stripeCustomerId;
       session!.user!.isActive = user.isActive;
+      session!.user!.isAllowedToSignIn = user.isAllowedToSignIn;
       return session;
+    },
+    async signIn({ user, account, profile, email, credentials }) {
+      if (!user.isAllowedToSignIn) {
+        return null;
+      }
+      return true;
     },
   },
   events: {
@@ -55,7 +62,7 @@ export const config = {
     },
   },
   // session: { strategy: "jwt" }, // Breaking on session callback
-} satisfies NextAuthConfig;
+} as NextAuthConfig;
 
 export const {
   handlers: { GET, POST },
