@@ -1,7 +1,7 @@
 import { auth } from "auth";
 import nodemailer from "nodemailer";
 
-export const GET = auth(async (request) => {
+export const POST = auth(async (request) => {
   if (request.auth) {
     const { message, lastname } = await request.json();
 

@@ -30,13 +30,11 @@ export const config = {
       session!.user!.id = user.id;
       session!.user!.stripeCustomerId = user.stripeCustomerId;
       session!.user!.isActive = user.isActive;
-      session!.user!.isAllowedToSignIn = user.isAllowedToSignIn;
+      // session!.user!.isAllowedToSignIn = user.isAllowedToSignIn; // TODO: Fix Allow, Doesn't allow to create account
       return session;
     },
     async signIn({ user, account, profile, email, credentials }) {
-      if (!user.isAllowedToSignIn) {
-        return null;
-      }
+      // if (!user.isAllowedToSignIn) { return null; } // TODO: Fix Allow, Doesn't allow to create account
       return true;
     },
   },
@@ -61,7 +59,7 @@ export const config = {
         });
     },
   },
-  // session: { strategy: "jwt" }, // Breaking on session callback
+  // session: { strategy: "jwt" }, // TODO: Fix, Breaking on session callback
 } as NextAuthConfig;
 
 export const {
