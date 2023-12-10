@@ -59,11 +59,16 @@ model User {
 }
 
 model EmailRoutes {
-  id        String @id @unique @default(uuid())
-  userId    String
-  fromEmail String @unique
-  toEmail   String
-  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id          String   @id @unique @default(uuid())
+  userId      String
+  fromEmail   String   @unique
+  toEmail     String   @unique
+  priority    Int      @default(20)
+  description String
+  expression  String
+  actions     String[]
+  created_at  DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
