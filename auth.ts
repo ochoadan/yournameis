@@ -26,13 +26,18 @@ export const config = {
   ],
   secret: process.env.AUTH_SECRET,
   callbacks: {
-    async session({ token, session }) {
+    async session({ user, session, token }) {
+      session!.user!.id = user.id;
+      session!.user!.stripeCustomerId = user.stripeCustomerId;
+      session!.user!.isAdmin = user.isAdmin;
+      session!.user!.isActive = user.isActive;
+      session!.user!.isAllowedToSignIn = user.isAllowedToSignIn;
       // if (token) { // JWT token
-      session!.user!.id = token.id;
-      session!.user!.stripeCustomerId = token.stripeCustomerId;
-      session!.user!.isAdmin = token.isAdmin;
-      session!.user!.isActive = token.isActive;
-      session!.user!.isAllowedToSignIn = token.isAllowedToSignIn;
+      // session!.user!.id = token.id;
+      // session!.user!.stripeCustomerId = token.stripeCustomerId;
+      // session!.user!.isAdmin = token.isAdmin;
+      // session!.user!.isActive = token.isActive;
+      // session!.user!.isAllowedToSignIn = token.isAllowedToSignIn;
       // } // JWT token
       return session;
     },
