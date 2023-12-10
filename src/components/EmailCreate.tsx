@@ -4,6 +4,9 @@ import { useState } from "react";
 import { Combobox } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { MdOutlineAlternateEmail } from "react-icons/md";
+import prisma from "prisma";
+
+// import domains from "./domains";
 
 const domains = [
   { id: 1, name: "ahmad.top" },
@@ -25,7 +28,7 @@ const EmailCreate = () => {
   const [selected, setSelected] = useState(domains[0]);
   const [query, setQuery] = useState("");
 
-  const filteredPeople =
+  const filteredDomains =
     query === ""
       ? domains
       : domains.filter((domain) =>
@@ -85,12 +88,12 @@ const EmailCreate = () => {
             </Combobox.Button>
           </div>
           <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-            {filteredPeople.length === 0 && query !== "" ? (
+            {filteredDomains.length === 0 && query !== "" ? (
               <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
                 Nothing found.
               </div>
             ) : (
-              filteredPeople.map((domain) => (
+              filteredDomains.map((domain) => (
                 <Combobox.Option
                   key={domain.id}
                   className={({ active }) =>

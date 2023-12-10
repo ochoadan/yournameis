@@ -31,7 +31,7 @@ const FreelancerCheckoutButton: React.FC<FreelancerCheckoutButtonProps> = ({
       }
 
       if (res.status === 409) {
-        router.push("/dashboard");
+        router.push("/billing");
         return;
       }
 

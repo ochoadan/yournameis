@@ -26,19 +26,38 @@ export const config = {
   ],
   secret: process.env.AUTH_SECRET,
   callbacks: {
-    async session({ session, user }) {
-      session!.user!.id = user.id;
-      session!.user!.stripeCustomerId = user.stripeCustomerId;
-      session!.user!.isActive = user.isActive;
-      session!.user!.isAllowedToSignIn = user.isAllowedToSignIn;
+    async session({ token, session }) {
+      // if (token) { // JWT token
+      session!.user!.id = token.id;
+      session!.user!.stripeCustomerId = token.stripeCustomerId;
+      session!.user!.isAdmin = token.isAdmin;
+      session!.user!.isActive = token.isActive;
+      session!.user!.isAllowedToSignIn = token.isAllowedToSignIn;
+      // } // JWT token
       return session;
     },
     async signIn({ user, account, profile, email, credentials }) {
-      if (!user.isAllowedToSignIn) {
-        return null;
-      }
       return true;
     },
+    //   async jwt({ token }) {  // JWT token
+    //     const dbUser = await prisma.user.findUnique({
+    //       where: {
+    //         email: token.email!,
+    //       },
+    //     });
+
+    //     if (dbUser?.isAllowedToSignIn) {
+    //       token.id = String(dbUser?.id);
+    //       token.stripeCustomerId = String(dbUser?.stripeCustomerId);
+    //       token.isAdmin = Boolean(dbUser?.isAdmin);
+    //       // token.isAllowedToSignIn = Boolean(dbUser?.isAllowedToSignIn);
+    //       token.isActive = Boolean(dbUser?.isActive);
+    //     } else {
+    //       return null;
+    //     }
+
+    //     return token;
+    //   }, // JWT token
   },
   events: {
     createUser: async ({ user }) => {
@@ -61,7 +80,7 @@ export const config = {
         });
     },
   },
-  // session: { strategy: "jwt" }, // Breaking on session callback
+  // session: { strategy: "jwt" }, // JWT token
 } as NextAuthConfig;
 
 export const {

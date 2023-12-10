@@ -40,16 +40,42 @@ model Session {
 }
 
 model User {
-  id                String    @id @default(cuid())
+  id                String        @id @default(cuid())
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @default(now()) @updatedAt
   name              String?
-  email             String?   @unique
+  email             String?       @unique
   emailVerified     DateTime?
   image             String?
-  stripeCustomerId  String?   @unique
-  isActive          Boolean   @default(false)
-  isAllowedToSignIn Boolean   @default(true)
-  accounts Account[]
-  sessions Session[]
+  stripeCustomerId  String?       @unique
+  isActive          Boolean       @default(false)
+  isAllowedToSignIn Boolean       @default(true)
+  isAdmin           Boolean       @default(false)
+  accounts          Account[]
+  sessions          Session[]
+  userEmailRoutes   EmailRoutes[]
+
+  @@index([email])
+}
+
+model EmailRoutes {
+  id          String   @id @unique @default(uuid())
+  userId      String
+  fromEmail   String   @unique
+  toEmail     String   @unique
+  priority    Int      @default(20)
+  description String
+  expression  String
+  actions     String[]
+  created_at  DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model Domains {
+  id     Int    @id @default(autoincrement())
+  domain String @unique
 }
 
 model VerificationToken {

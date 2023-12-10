@@ -7,11 +7,13 @@ declare module "next-auth" {
       stripeCustomerId: string;
       isActive: boolean;
       isAllowedToSignIn: boolean;
+      isAdmin: boolean
     };
   }
   interface User extends DefaultUser {
     stripeCustomerId: string;
     isActive: boolean;
     isAllowedToSignIn: boolean;
+    isAdmin: boolean;
   }
 }
