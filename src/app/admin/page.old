@@ -1,21 +1,35 @@
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
-import prisma from "@/utils/prisma";
+import { useState } from "react";
 
-const Page = async () => {
-  const response = await prisma.domains.findMany();
+const Page = () => {
+  //   const [domain, setDomain] = useState("");
+  //   const [domains, setDomains] = useState<string[]>([]);
 
-  const res = response.map((item: any) => ({
-    id: item.id,
-    domain: item.domain,
-  }));
+  //   const handleAddDomain = () => {
+  //     if (domain.trim() !== "") {
+  //       setDomains((prevDomains) => [...prevDomains, domain]);
+  //       setDomain("");
+  //     }
+  //   };
 
+  //   const handleRemoveDomain = (index: number) => {
+  //     setDomains((prevDomains) => prevDomains.filter((_, i) => i !== index));
+  //   };
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
       <div className="border-b border-gray-200 bg-white px-4 py-5 sm:px-6 shadow rounded-lg ">
         <h2 className="text-lg font-semibold leading-6 text-gray-900">
           Domains
         </h2>
+        {/* <form onSubmit={(e) => e.preventDefault()}> */}
         <form>
+          {/* <label
+            htmlFor="email"
+            className="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Domains
+          </label> */}
+
           <div className="mt-2 flex rounded-md shadow-sm">
             <div className="relative flex flex-grow items-stretch focus-within:z-10">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -26,12 +40,15 @@ const Page = async () => {
               </div>
               <input
                 type="text"
+                // value={domain}
                 className="block w-full rounded-none rounded-l-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                // onChange={(e) => setDomain(e.target.value)}
               />
             </div>
             <button
               type="button"
               className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              //   onClick={handleAddDomain}
             >
               Add Domain
             </button>
@@ -39,13 +56,15 @@ const Page = async () => {
         </form>
       </div>
       <div className="lg:col-span-2 border-b border-gray-200 bg-white px-4 py-5 sm:px-6 shadow rounded-lg">
-        <h2 className="text-lg font-semibold leading-6 text-gray-900">
-          Domains List
-        </h2>
         <ul>
-          {res.map((item: any) => (
-            <div key={item.id}>{item.domain}</div>
-          ))}
+          {/* {domains.map((domain, index) => (
+            <li key={index}>
+              {domain}
+              <button type="button" onClick={() => handleRemoveDomain(index)}>
+                Remove
+              </button>
+            </li>
+          ))} */}
         </ul>
       </div>
     </div>

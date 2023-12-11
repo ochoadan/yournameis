@@ -1,10 +1,10 @@
-import prisma from "prisma";
+import prisma from "@/utils/prisma";
 
 export const GET = async (req: any) => {
   try {
     const { name, domain: requestDomain } = req.query;
 
-    req.socket.remoteAddress;
+    // req.socket.remoteAddress;
 
     // Validate name and domain
     if (!name || !requestDomain) {

@@ -1,15 +1,15 @@
-"use client";
+// "use client";
 
-import {  useState } from "react";
-import EmailCreate from "@/components/app/EmailCreate";
+// import { useState } from "react";
+import EmailCreate from "@/components/app/EmailInput/EmailForms";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { auth } from "auth";
 
-const Page = () => {
+const Page = async () => {
+  const session = await auth();
+  // const [appCreate, setAppCreate] = useState(false);
 
-  const { data: session } = useSession();
-  const [appCreate, setAppCreate] = useState(false);
-  
   return (
     <>
       <ul
@@ -29,44 +29,44 @@ const Page = () => {
             </p>
           </div>
           <div className="flex-shrink-0">
-            {!appCreate && (
-              <button
-                onClick={() => setAppCreate(true)}
-                type="button"
-                className="mt-2 md:mt-0 relative inline-flex items-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
-              >
-                Create Email
-              </button>
-            )}
+            {/* {!appCreate && ( */}
+            <button
+              // onClick={() => setAppCreate(true)}
+              type="button"
+              className="mt-2 md:mt-0 relative inline-flex items-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+            >
+              Create Email
+            </button>
+            {/* )} */}
           </div>
         </div>
-        {appCreate && (
-          <>
-            <form>
-              {/* <form onSubmit={handleFormSubmit}> */}
-              <div className="mx-4 lg:mx-8 my-4 flex-wrap items-center justify-between md:flex">
-                <EmailCreate />
-                <div className="mt-3 flex items-center justify-end gap-x-6">
-                  <button
-                    type="button"
-                    className="text-sm font-semibold leading-6 text-gray-900"
-                    onClick={() => setAppCreate(false)}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    // disabled={createAppLoading}
-                    type="submit"
-                    className="inline-flex justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
-                  >
-                    Submit
-                    {/* {createAppLoading ? "Loading..." : "Submit"} */}
-                  </button>
-                </div>
-              </div>
-            </form>
-          </>
-        )}
+        {/* {appCreate && (
+          <> */}
+        <form>
+          {/* <form onSubmit={handleFormSubmit}> */}
+          <div className="mx-4 lg:mx-8 my-4 flex-wrap items-center justify-between md:flex">
+            <EmailCreate />
+            <div className="mt-3 flex items-center justify-end gap-x-6">
+              <button
+                type="button"
+                className="text-sm font-semibold leading-6 text-gray-900"
+                // onClick={() => setAppCreate(false)}
+              >
+                Cancel
+              </button>
+              <button
+                // disabled={createAppLoading}
+                type="submit"
+                className="inline-flex justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+              >
+                Submit
+                {/* {createAppLoading ? "Loading..." : "Submit"} */}
+              </button>
+            </div>
+          </div>
+        </form>
+        {/* </> */}
+        {/* )} */}
         <table className="w-full whitespace-nowrap text-left">
           <colgroup>
             <col className="w-full sm:w-1/3" />

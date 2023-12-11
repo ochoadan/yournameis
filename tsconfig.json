@@ -21,7 +21,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "auth": ["./auth"],
-      "prisma": ["./prisma/prisma"]
+      "prisma": ["./src/utils/prisma"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

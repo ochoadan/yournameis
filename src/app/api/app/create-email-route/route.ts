@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Mailgun from "mailgun.js";
-import prisma from "prisma";
+import prisma from "@/utils/prisma";
 import { auth } from "auth";
 import formData from "form-data";
 
