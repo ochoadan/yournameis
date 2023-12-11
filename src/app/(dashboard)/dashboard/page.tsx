@@ -1,7 +1,7 @@
 "use client";
 
 import {  useState } from "react";
-import EmailCreate from "@/components/EmailCreate";
+import EmailCreate from "@/components/app/EmailCreate";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 

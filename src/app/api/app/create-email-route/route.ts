@@ -120,7 +120,7 @@ export const POST = auth(async (req) => {
             });
             return Response.json(
               { message: "Email route created successfully" },
-              { status: 200 } // OK
+              { status: 201 } // Email route created
             );
           } catch (error) {
             return Response.json(

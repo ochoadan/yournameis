@@ -14,7 +14,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import Image from "next/image";
 
-const PagesNav = () => {
+const PagesNav = ({ session }: { session: any }) => {
   const pathname = usePathname();
   const Linkx = ({
     href,
@@ -39,6 +39,7 @@ const PagesNav = () => {
     <>
       <Linkx href="/dashboard">Dashboard</Linkx>
       <Linkx href="/billing">Billing</Linkx>
+      {session?.user?.isAdmin && <Linkx href="/admin">Admin</Linkx>}
       {/* <Linkx href="/affiliates">Affiliates</Linkx> */}
     </>
   );
@@ -64,7 +65,7 @@ const AppBarNav = () => {
                 </div>
                 <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
                   {/* Current: "border-sky-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                  <PagesNav />
+                  <PagesNav session={session} />
                 </div>
               </div>
               {/* <div className="flex flex-1 items-center justify-center px-2 lg:ml-6 lg:justify-end">

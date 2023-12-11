@@ -1,5 +1,5 @@
 import Image from "next/image";
-import EmailCreate from "../EmailCreate";
+import EmailCreate from "../app/EmailCreate";
 
 export default function Hero() {
   return (
