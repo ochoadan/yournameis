@@ -5,9 +5,11 @@ import EmailCreate from "@/components/app/EmailInput/EmailForms";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { auth } from "auth";
+import { getDomainData } from "@/utils/prisma-calls";
 
 const Page = async () => {
   const session = await auth();
+  const domainsData = await getDomainData();
   // const [appCreate, setAppCreate] = useState(false);
 
   return (
@@ -45,7 +47,7 @@ const Page = async () => {
         <form>
           {/* <form onSubmit={handleFormSubmit}> */}
           <div className="mx-4 lg:mx-8 my-4 flex-wrap items-center justify-between md:flex">
-            <EmailCreate />
+            <EmailCreate domainsData={domainsData} />
             <div className="mt-3 flex items-center justify-end gap-x-6">
               <button
                 type="button"

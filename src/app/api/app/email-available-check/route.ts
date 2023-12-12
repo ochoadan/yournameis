@@ -1,11 +1,9 @@
 import prisma from "@/utils/prisma";
 
-export const GET = async (req: any) => {
+export const POST = async (req: any) => {
   try {
-    const { name, domain: requestDomain } = req.query;
-
-    // req.socket.remoteAddress;
-
+    const { name, domain: requestDomain } = await req.json();
+    console.log(`${name}@${requestDomain}`);
     // Validate name and domain
     if (!name || !requestDomain) {
       return Response.json(
@@ -34,7 +32,7 @@ export const GET = async (req: any) => {
     if (routeExists) {
       return Response.json(
         { message: "Email route is already taken" },
-        { status: 200 } // OK
+        { status: 409 } // Conflict
       );
     } else {
       return Response.json(
@@ -43,6 +41,9 @@ export const GET = async (req: any) => {
       );
     }
   } catch (error) {
-    return Response.json({ message: "Internal server error" }, { status: 500 }); // Internal Server Error
+    return Response.json(
+      { message: "Internal server error" },
+      { status: 500 } // Internal Server Error
+    );
   }
 };

@@ -1,7 +1,8 @@
 import Image from "next/image";
-import EmailCreate from "@/components/app/EmailInput/EmailForms";
+import EmailAvailableForm from "@/components/app/EmailInput/EmailAvailableForm";
+import { getDomainData } from "@/utils/prisma-calls";
 
-export default function Hero() {
+export default async function Hero() {
   // TODO: Fetch data from API
   // const response = await fetch(\
   //   `${process.env.NEXTAUTH_URL}/api/app/email-available-check`,
@@ -9,6 +10,7 @@ export default function Hero() {
   // );
 
   // const res = await response.json();
+  const domainsData = await getDomainData();
 
   return (
     <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-12 lg:items-start">
@@ -19,9 +21,7 @@ export default function Hero() {
           </h1>
         </div>
         {/* TODO: ADD form and errors on empty button */}
-        <form className="flex mt-2">
-          <EmailCreate availabilityButton={true} />
-        </form>
+        <EmailAvailableForm domainsData={domainsData} />
         <div className="flex mt-4">
           Sign in to Create your email or request a new domain.
         </div>
