@@ -1,5 +1,3 @@
-"use client"
-
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { EmailInput, EmailCombobox } from "./ECInputs";
 

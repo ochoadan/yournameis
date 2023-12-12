@@ -20,9 +20,8 @@ export default async function Hero() {
             Business email for individuals
           </h1>
         </div>
-        {/* TODO: ADD form and errors on empty button */}
         <EmailAvailableForm domainsData={domainsData} />
-        <div className="flex mt-4">
+        <div className="flex mt-2">
           Sign in to Create your email or request a new domain.
         </div>
       </div>
