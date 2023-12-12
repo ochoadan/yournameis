@@ -52,7 +52,8 @@ export async function POST(req: NextRequest) {
         quantity: 1,
       },
     ],
-    success_url: process.env.NEXTAUTH_URL + `?session_id={CHECKOUT_SESSION_ID}`,
+    success_url:
+      process.env.NEXTAUTH_URL + `/dashboard?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.NEXTAUTH_URL}/billing`,
     subscription_data: {
       metadata: {

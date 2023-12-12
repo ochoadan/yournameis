@@ -1,17 +1,18 @@
 import Link from "next/link";
 import { auth } from "auth";
-import { getDomainData } from "@/utils/prisma-calls";
+import { getDomainData, getUsersRoutes } from "@/utils/prisma-calls";
 import CreateEmail from "@/components/app/EmailRoutes/CreateEmail";
 
 const Page = async () => {
   const session = await auth();
   const domainsData = await getDomainData();
+  const routesData = await getUsersRoutes({ session });
 
   return (
     <>
       <div className="divide-y divide-gray-200 bg-white shadow sm:rounded-xl">
         {session?.user.isActive ? (
-          <CreateEmail domainsData={domainsData} />
+          <CreateEmail domainsData={domainsData} routesData={routesData} />
         ) : (
           <div className="p-4">
             <h1 className="text-2xl font-semibold text-gray-900">
