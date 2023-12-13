@@ -23,7 +23,6 @@ const EmailAvailableForm = ({ domainsData: domains }: EmailFormsProps) => {
   const [selected, setSelected] = useState(domains[0]);
   const [query, setQuery] = useState("");
   const [availability, setAvailability] = useState<string | null>(null);
-  const [responseStatus, setResponseStatus] = useState<number>(0);
 
   const filteredDomains =
     query === ""
@@ -40,29 +39,36 @@ const EmailAvailableForm = ({ domainsData: domains }: EmailFormsProps) => {
       name: formData.get("name"),
       domain: formData.get("domain"),
     };
-    const response = await fetch("/api/app/email-available-check", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(rawFormData),
-    });
-    const res = await response;
-    if (res.status === 200) {
-      setAvailability(
-        `Email ${rawFormData.name}@${rawFormData.domain} is available.`
-      );
-      setResponseStatus(200);
-      return;
-    } else if (res.status === 409) {
-      setAvailability(
-        `Email ${rawFormData.name}@${rawFormData.domain} is not available.`
-      );
-      setResponseStatus(409);
-      return;
-    } else {
-      setAvailability("An error occurred. Please try again.");
-      setResponseStatus(res.status);
+    try {
+      const response = await fetch("/api/app/email-available-check", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(rawFormData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const res = await response;
+      if (res.status === 200) {
+        setAvailability(
+          `Email ${rawFormData.name}@${rawFormData.domain} is available.`
+        );
+        return;
+      } else if (res.status === 409) {
+        setAvailability(
+          `Email ${rawFormData.name}@${rawFormData.domain} is not available.`
+        );
+        return;
+      } else {
+        setAvailability("An error occurred. Please try again.");
+        return;
+      }
+    } catch (error) {
+      console.error("Error:", error);
       return;
     }
   }
@@ -178,9 +184,9 @@ const EmailAvailableForm = ({ domainsData: domains }: EmailFormsProps) => {
       {availability && (
         <div
           className={`flex mt-2 ${
-            responseStatus === 200
+            availability.includes("available")
               ? "text-green-600"
-              : responseStatus === 409
+              : availability.includes("not available")
               ? "text-yellow-600"
               : "text-red-600"
           }`}
