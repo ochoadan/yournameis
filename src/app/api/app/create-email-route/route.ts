@@ -27,11 +27,11 @@ export const POST = auth(async (req) => {
       );
     }
 
-    const { name, domain: requestDomain } = await req.json();
+    const { name, domain: requestDomain, key } = await req.json();
 
-    if (!name || !requestDomain) {
+    if (!name || !requestDomain || !key) {
       return Response.json(
-        { message: "Name and domain are required." },
+        { message: "Name, domain, and key are required." },
         { status: 422 }
       );
     }
