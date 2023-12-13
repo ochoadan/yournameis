@@ -14,7 +14,7 @@ export async function getDomainData() {
 export async function getUsersRoutes({ session }: any) {
   const response = await prisma.emailRoutes.findMany({
     where: {
-      userId: session.user.id,
+      createdById: session.user.id,
     },
   });
 

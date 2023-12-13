@@ -53,24 +53,19 @@ model User {
   isAdmin           Boolean       @default(false)
   accounts          Account[]
   sessions          Session[]
-  userEmailRoutes   EmailRoutes[]
+  EmailRoutes       EmailRoutes[]
 
   @@index([email])
 }
 
 model EmailRoutes {
-  id          String   @id @unique @default(uuid())
-  userId      String
+  id          String   @id
   fromEmail   String   @unique
   toEmail     String   @unique
-  priority    Int      @default(20)
   description String
-  expression  String
-  actions     String[]
   created_at  DateTime @default(now())
-  user        User     @relation(fields: [userId], references: [id])
-
-  @@index([userId])
+  createdById String
+  createdBy   User     @relation(fields: [createdById], references: [id])
 }
 
 model Domains {

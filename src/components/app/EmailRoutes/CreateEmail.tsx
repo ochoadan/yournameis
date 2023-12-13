@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { Combobox } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { useRouter } from "next/navigation";
 
 interface Domain {
   id: number;
@@ -27,6 +27,7 @@ const CreateEmail = ({
   domainsData: domains,
   routesData: routes,
 }: EmailFormsProps) => {
+  const router = useRouter();
   const [appCreate, setAppCreate] = useState(false);
   const [selected, setSelected] = useState(domains[0]);
   const [query, setQuery] = useState("");
@@ -41,6 +42,30 @@ const CreateEmail = ({
             .includes(query.toLowerCase().replace(/\s+/g, ""))
         );
 
+  async function handleSubmit(formData: FormData) {
+    try {
+      const rawFormData = {
+        name: formData.get("name"),
+        domain: formData.get("domain"),
+      };
+      const response = await fetch("/api/app/create-email-route", {
+        method: "POST",
+        body: JSON.stringify(rawFormData),
+      });
+      if (response.status === 201) {
+        console.log("Success:", await response);
+        router.refresh();
+        return;
+      } else {
+        console.log("Error:", await response);
+        return;
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      return;
+    }
+  }
+
   return (
     <>
       <div className="flex flex-wrap items-center justify-between md:flex-nowrap px-4 lg:px-8 py-4">
@@ -54,7 +79,7 @@ const CreateEmail = ({
           </p>
         </div>
         <div className="flex-shrink-0">
-          {!appCreate && (
+          {!appCreate && routes.length === 0 && (
             <button
               onClick={() => setAppCreate(true)}
               type="button"
@@ -65,8 +90,8 @@ const CreateEmail = ({
           )}
         </div>
       </div>
-      {appCreate && (
-        <form>
+      {appCreate && routes.length === 0 && (
+        <form action={handleSubmit}>
           <div className="mx-4 lg:mx-8 my-4 flex-wrap items-center justify-between md:flex">
             <div className="flex space-x-2 mt-4">
               <div className="w-1/2 min-w-0 flex-1 relative">
@@ -81,6 +106,7 @@ const CreateEmail = ({
                   name="name"
                   id="name"
                   required
+                  pattern="^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+){0,2}$"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   placeholder="Jane"
                 />
@@ -206,6 +232,7 @@ const CreateEmail = ({
 };
 
 export default CreateEmail;
+
 // <table className="w-full whitespace-nowrap text-left">
 //   <colgroup>
 //     <col className="w-full sm:w-1/3" />
