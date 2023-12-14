@@ -2,9 +2,9 @@ import FreelancerCheckoutButton from "@/components/FreelancerCheckoutButton";
 import { CheckIcon } from "@heroicons/react/20/solid";
 
 const includedFeatures = [
-  "Email Forwarding",
+  "1 Email Forwarding",
   "Support from friendly humans",
-  "Spam & Virus protection (Coming soon)",
+  "Spam & Virus protection",
   "Redirect Subdomain (Coming soon)",
 ];
 
@@ -72,7 +72,7 @@ const Billing = async () => {
                     </p>
                     <p className="mt-6 flex items-baseline justify-center gap-x-2">
                       <span className="text-5xl font-bold tracking-tight text-gray-900">
-                        $10
+                        $20
                       </span>
                       <span className="text-sm font-semibold leading-6 tracking-wide text-gray-600">
                         USD

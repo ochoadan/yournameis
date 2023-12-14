@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 
 const stats = [
   { id: 1, name: "Email Transactions a day", value: "1,000+" },
-  { id: 2, name: "Exceptional Competitive Pricing", value: "-73.5%" },
+  { id: 2, name: "Exceptionally Competitive Pricing", value: "-50%" },
   { id: 3, name: "Uptime Guarantee", value: "99.9%" },
-  { id: 4, name: "Existing Email Routes", value: "200+" },
+  { id: 4, name: "Existing Email Routes", value: "400+" },
 ];
 const Page = () => {
   return (
