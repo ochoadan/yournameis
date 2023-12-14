@@ -1,12 +1,106 @@
 import { CheckIcon } from "@heroicons/react/20/solid";
-import FreelancerCheckoutButton from "../FreelancerCheckoutButton";
+import CheckoutButton from "@/components/CheckoutButton";
 import Link from "next/link";
+
+interface PricingTier {
+  title: string;
+  price: string;
+  features: string[];
+  buttonText: string;
+  tier: number;
+}
+
 const includedFeatures = [
   "Unlimited Email Forwarding",
   "Customized Web Solutions",
 ];
 
-export default function Example() {
+const pricingTiers: PricingTier[] = [
+  {
+    title: "Freelancer",
+    price: "$20",
+    features: [
+      "1 Email Forwarding",
+      "Support from friendly humans",
+      "Spam & Virus protection",
+      "Redirect Subdomain (Planned)",
+    ],
+    buttonText: "Buy plan",
+    tier: 1,
+  },
+  {
+    title: "Partnership",
+    price: "$35",
+    features: [
+      "3 Emails Forwarding",
+      "Mailbox (Planned)",
+      "Support from friendly humans",
+      "Spam & Virus protection",
+      "3 Redirect Subdomains (Planned)",
+    ],
+    buttonText: "Buy plan",
+    tier: 2,
+  },
+  {
+    title: "Family",
+    price: "$60",
+    features: [
+      "10 Emails Forwarding",
+      "Mailbox (Planned)",
+      "10 GB Storage (Planned)",
+      "Support from friendly humans",
+      "Spam & Virus protection",
+      "10 Redirect Subdomains (Planned)",
+    ],
+    buttonText: "Buy plan",
+    tier: 3,
+  },
+];
+
+interface PricingCardProps {
+  tier: PricingTier;
+}
+
+const PricingCard: React.FC<PricingCardProps> = ({ tier }) => {
+  return (
+    <div className="ring-gray-200 rounded-3xl p-8 ring-1 xl:p-10">
+      <h3 className="text-gray-900 text-lg font-semibold leading-8">
+        {tier.title}
+      </h3>
+      <p className="text-gray-600 mt-4 text-sm leading-6">Planned!</p>
+      <p className="mt-6 flex items-baseline gap-x-1">
+        <span className="text-gray-900 text-4xl font-bold tracking-tight">
+          {tier.price}
+        </span>
+        <span className="text-gray-600 text-sm font-semibold leading-6">
+          /year
+        </span>
+      </p>
+      <CheckoutButton
+        tier={tier.tier}
+        className="bg-sky-600 w-full text-white shadow-sm hover:bg-sky-500 focus-visible:outline-sky-600 mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+      >
+        {tier.buttonText}
+      </CheckoutButton>
+      <ul
+        role="list"
+        className="text-gray-600 mt-8 space-y-3 text-sm leading-6 xl:mt-10"
+      >
+        {tier.features.map((feature) => (
+          <li key={feature} className="flex gap-x-3">
+            <CheckIcon
+              className="text-sky-600 h-6 w-5 flex-none"
+              aria-hidden="true"
+            />
+            {feature}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default function Pricing() {
   return (
     <div className="bg-white py-24 sm:py-32" id="pricing">
       <div className="mx-auto max-w-8xl px-6 lg:px-8">
@@ -16,187 +110,9 @@ export default function Example() {
           </h2>
         </div>
         <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          <div className="ring-gray-200 rounded-3xl p-8 ring-1 xl:p-10">
-            <h3 className={"text-gray-900 text-lg font-semibold leading-8"}>
-              Freelancer
-            </h3>
-            <p className="text-gray-600 mt-4 text-sm leading-6">
-              The essentials for a better digital experience
-            </p>
-            <p className="mt-6 flex items-baseline gap-x-1">
-              <span className="text-gray-900 text-4xl font-bold tracking-tight">
-                $20
-              </span>
-              <span className="text-gray-600 text-sm font-semibold leading-6">
-                {"/year"}
-              </span>
-            </p>
-            <FreelancerCheckoutButton className="bg-sky-600 w-full text-white shadow-sm hover:bg-sky-500 focus-visible:outline-sky-600 mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-              Buy plan
-            </FreelancerCheckoutButton>
-            <ul
-              role="list"
-              className="text-gray-600 mt-8 space-y-3 text-sm leading-6 xl:mt-10"
-            >
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                1 Email Forwarding
-              </li>
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                Support from friendly humans
-              </li>
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                Spam & Virus protection
-              </li>
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                Redirect Subdomain (Coming soon)
-              </li>
-            </ul>
-          </div>
-          <div className="ring-gray-200 rounded-3xl p-8 ring-1 xl:p-10">
-            <h3 className={"text-gray-900 text-lg font-semibold leading-8"}>
-              Partnership
-            </h3>
-            <p className="text-gray-600 mt-4 text-sm leading-6">Coming soon!</p>
-            <p className="mt-6 flex items-baseline gap-x-1">
-              <span className="text-gray-900 text-4xl font-bold tracking-tight">
-                $35
-              </span>
-              <span className="text-gray-600 text-sm font-semibold leading-6">
-                /year
-              </span>
-            </p>
-            <button
-              // href={tier.href}
-              // aria-describedby={tier.id}
-              className="opacity-50 cursor-not-allowed w-full bg-sky-600 text-white shadow-sm hover:bg-sky-500 focus-visible:outline-sky-600 mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-              disabled
-            >
-              Coming soon!
-            </button>
-            <ul
-              role="list"
-              className="text-gray-600 mt-8 space-y-3 text-sm leading-6 xl:mt-10"
-            >
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                3 Emails Forwarding
-              </li>
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                Mailbox (Coming soon)
-              </li>
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                Support from friendly humans
-              </li>
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                Spam & Virus protection
-              </li>
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                3 Redirect Subdomains (Coming soon)
-              </li>
-            </ul>
-          </div>
-          <div className="ring-gray-200 rounded-3xl p-8 ring-1 xl:p-10">
-            <h3 className={"text-gray-900 text-lg font-semibold leading-8"}>
-              Family
-            </h3>
-            <p className="text-gray-600 mt-4 text-sm leading-6">Coming soon!</p>
-            <p className="mt-6 flex items-baseline gap-x-1">
-              <span className="text-gray-900 text-4xl font-bold tracking-tight">
-                $60
-              </span>
-              <span className="text-gray-600 text-sm font-semibold leading-6">
-                /year
-              </span>
-            </p>
-            <button
-              className="opacity-50 cursor-not-allowed w-full bg-sky-600 text-white shadow-sm hover:bg-sky-500 focus-visible:outline-sky-600 mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-              disabled
-            >
-              Coming soon!
-            </button>
-            <ul
-              role="list"
-              className="text-gray-600 mt-8 space-y-3 text-sm leading-6 xl:mt-10"
-            >
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                10 Emails Forwarding
-              </li>
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                Mailbox (Coming soon)
-              </li>
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                10 GB Storage (Coming soon)
-              </li>
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                Support from friendly humans
-              </li>
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                Spam & Virus protection
-              </li>
-              <li className="flex gap-x-3">
-                <CheckIcon
-                  className="text-sky-600 h-6 w-5 flex-none"
-                  aria-hidden="true"
-                />
-                10 Redirect Subdomains (Coming soon)
-              </li>
-            </ul>
-          </div>
+          {pricingTiers.map((tier) => (
+            <PricingCard key={tier.title} tier={tier} />
+          ))}
         </div>
         <div className="mx-auto mt-8 max-w-2xl rounded-3xl ring-1 bg-gray-900 ring-gray-900 sm:mt-10 lg:mx-0 lg:flex lg:max-w-none">
           <div className="p-8 sm:p-10 lg:flex-auto">
@@ -243,10 +159,10 @@ export default function Example() {
                   target="_blank"
                   className="mt-10 block w-full rounded-md bg-sky-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
                 >
-                  Get access
+                  Request Quote
                 </Link>
                 <p className="mt-6 text-xs leading-5 text-gray-300">
-                  Application is still in development.
+                  We&apos;ll get back to you within 24 hours
                 </p>
               </div>
             </div>

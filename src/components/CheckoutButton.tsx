@@ -3,17 +3,27 @@
 import { useRouter } from "next/navigation";
 import getStripe from "@/utils/getStripe";
 
-interface FreelancerCheckoutButtonProps {
+interface CheckoutButtonProps {
   className: string;
   children: string;
+  tier: number;
 }
 
-const FreelancerCheckoutButton: React.FC<FreelancerCheckoutButtonProps> = ({
+const CheckoutButton: React.FC<CheckoutButtonProps> = ({
   className,
   children,
+  tier,
 }) => {
   const router = useRouter();
-  const plan = process.env.NEXT_PUBLIC_STRIPE_API_ID_FY!;
+  let productId = "";
+
+  if (tier === 1) {
+    productId = process.env.NEXT_PUBLIC_STRIPE_API_ID_FY!;
+  } else if (tier === 2) {
+    productId = process.env.NEXT_PUBLIC_STRIPE_API_ID_BY!;
+  } else if (tier === 3) {
+    productId = process.env.NEXT_PUBLIC_STRIPE_API_ID_EY!;
+  }
 
   const handleCreateCheckoutSession = async (productId: string) => {
     try {
@@ -51,17 +61,12 @@ const FreelancerCheckoutButton: React.FC<FreelancerCheckoutButtonProps> = ({
       console.error("An error occurred:", error.message);
     }
   };
-  // if (session && session.user.isActive) {
-  //   return (
-
-  //   );
-  // }
 
   return (
     <>
       <button
         className={className}
-        onClick={() => handleCreateCheckoutSession(plan)}
+        onClick={() => handleCreateCheckoutSession(productId)}
       >
         {children}
       </button>
@@ -69,4 +74,4 @@ const FreelancerCheckoutButton: React.FC<FreelancerCheckoutButtonProps> = ({
   );
 };
 
-export default FreelancerCheckoutButton;
+export default CheckoutButton;

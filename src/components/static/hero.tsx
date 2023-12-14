@@ -21,7 +21,7 @@ export default async function Hero() {
           </h1>
         </div>
         <EmailAvailableForm domainsData={domainsData} />
-        <div className="flex mt-2">
+        <div className="flex mt-2 justify-center lg:justify-start">
           Sign in to Create your email or request a new domain.
         </div>
       </div>

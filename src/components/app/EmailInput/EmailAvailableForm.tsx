@@ -69,8 +69,8 @@ const EmailAvailableForm = ({ domainsData: domains }: EmailFormsProps) => {
 
   return (
     <>
-      <form className="flex mt-2" action={handleSubmit}>
-        <div className="flex space-x-2 mt-4">
+      <form action={handleSubmit}>
+        <div className="flex space-x-2 mt-4 max-w-2xl mx-auto lg:mx-0">
           <div className="w-1/2 min-w-0 flex-1 relative">
             <label
               htmlFor="name"
@@ -168,7 +168,16 @@ const EmailAvailableForm = ({ domainsData: domains }: EmailFormsProps) => {
           </Combobox>
           <button
             type="submit"
-            className="inline-flex items-center gap-x-1.5 rounded-md bg-sky-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+            className="hidden lg:inline-flex items-center gap-x-1.5 rounded-md bg-sky-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+          >
+            <CheckCircleIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
+            Verify Availability
+          </button>
+        </div>
+        <div className="flex justify-center">
+          <button
+            type="submit"
+            className="lg:hidden inline-flex mt-2 items-center gap-x-1.5 rounded-md bg-sky-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
           >
             <CheckCircleIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
             Verify Availability
@@ -177,7 +186,7 @@ const EmailAvailableForm = ({ domainsData: domains }: EmailFormsProps) => {
       </form>
       {availability && (
         <div
-          className={`flex mt-2 ${
+          className={`flex mt-2 justify-center lg:justify-start ${
             responseStatus === 200
               ? "text-green-600"
               : responseStatus === 409
