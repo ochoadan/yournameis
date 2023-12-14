@@ -37,14 +37,13 @@ export default function SigninAuthUserForm() {
             </label>
             <div className="mt-2">
               <input
-                disabled
                 id="email"
                 name="email"
                 autoComplete="email"
                 required
                 onChange={(e) => setEmail(e.target.value)}
                 className={clsx(
-                  "cursor-not-allowed block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6",
+                  " block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6",
                   {
                     "ring-red-300 focus:ring-red-500": isClicked,
                     "focus:ring-sky-600": !isClicked,
@@ -53,12 +52,10 @@ export default function SigninAuthUserForm() {
               />
             </div>
           </div>
-
           <div>
             <button
-              disabled
               onClick={handleSignIn}
-              className="cursor-not-allowed flex w-full justify-center rounded-md bg-sky-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+              className=" flex w-full justify-center rounded-md bg-sky-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
             >
               Sign in
             </button>
