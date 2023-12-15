@@ -69,8 +69,8 @@ export default function Footer() {
           <div className="space-y-8">
             <Logo className="h-7" />
             <p className="text-sm leading-6 text-gray-600">
-              Making the world a better place through constructing elegant
-              hierarchies.
+              Creating a better way to present yourself with a business email
+              that represents your name, not your email provider.
             </p>
             <div className="flex space-x-6">
               {navigation.social.map((item) => (

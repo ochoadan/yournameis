@@ -5,8 +5,8 @@ import Pricing from "@/components/static/pricing";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Virtuabyte - Business Email for Individuals",
-  description: "Virtuabyte is a business email service for individuals.",
+  title: "YourNameIs - Business Email for Individuals",
+  description: "YourNameIs is a business email service for individuals.",
 };
 
 const stats = [

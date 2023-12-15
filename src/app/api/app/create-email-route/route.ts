@@ -66,7 +66,7 @@ export const POST = auth(async (req) => {
     }
     const routeData = {
       priority: 20,
-      description: "VirtuaByte Email route for " + req.auth.user.email,
+      description: "YourNameIs Email route for " + req.auth.user.email,
       expression: `match_recipient("${name}@${requestDomain}")`,
       action: [`forward("${req.auth.user.email}")`, "stop()"],
     };

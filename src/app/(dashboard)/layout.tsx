@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Dashboard",
-  description: "Dashboard for VirtuaByte.",
+  description: "Dashboard for YourNameIs.",
 };
 
 const Page = async ({ children }: { children: React.ReactNode }) => {
