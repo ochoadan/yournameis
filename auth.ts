@@ -12,57 +12,56 @@ export const config = {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-    // EmailProvider({
-    //   server: {
-    //     host: process.env.EMAIL_SERVER_HOST,
-    //     port: Number(process.env.EMAIL_SERVER_PORT),
-    //     auth: {
-    //       user: process.env.EMAIL_SERVER_USER,
-    //       pass: process.env.EMAIL_SERVER_PASSWORD,
-    //     },
-    //   },
-    //   from: process.env.EMAIL_FROM,
-    // }),
+    EmailProvider({
+      server: {
+        host: process.env.EMAIL_SERVER_HOST,
+        port: Number(process.env.EMAIL_SERVER_PORT),
+        auth: {
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD,
+        },
+      },
+      from: process.env.EMAIL_FROM,
+    }),
   ],
   secret: process.env.AUTH_SECRET,
   callbacks: {
     async session({ user, session, token }) {
-      session!.user!.id = user.id;
-      session!.user!.stripeCustomerId = user.stripeCustomerId;
-      session!.user!.isAdmin = user.isAdmin;
-      session!.user!.isActive = user.isActive;
-      session!.user!.isAllowedToSignIn = user.isAllowedToSignIn;
-      // if (token) { // JWT token
-      // session!.user!.id = token.id;
-      // session!.user!.stripeCustomerId = token.stripeCustomerId;
-      // session!.user!.isAdmin = token.isAdmin;
-      // session!.user!.isActive = token.isActive;
-      // session!.user!.isAllowedToSignIn = token.isAllowedToSignIn;
-      // } // JWT token
-      return session;
+      if (token) {
+        session!.user!.id = token.id;
+        session!.user!.stripeCustomerId = token.stripeCustomerId;
+        session!.user!.isActive = token.isActive;
+        session!.user!.addressesCount = token.addressesCount;
+        session!.user!.allowedAddressesCount = token.allowedAddressesCount;
+        session!.user!.isAdmin = token.isAdmin;
+        session!.user!.isAllowedToSignIn = token.isAllowedToSignIn;
+        return session;
+      } else {
+        return null;
+      }
     },
     async signIn({ user, account, profile, email, credentials }) {
       return true;
     },
-    //   async jwt({ token }) {  // JWT token
-    //     const dbUser = await prisma.user.findUnique({
-    //       where: {
-    //         email: token.email!,
-    //       },
-    //     });
+    async jwt({ token }) {
+      const dbUser = await prisma.user.findUnique({
+        where: {
+          email: token.email!,
+        },
+      });
 
-    //     if (dbUser?.isAllowedToSignIn) {
-    //       token.id = String(dbUser?.id);
-    //       token.stripeCustomerId = String(dbUser?.stripeCustomerId);
-    //       token.isAdmin = Boolean(dbUser?.isAdmin);
-    //       // token.isAllowedToSignIn = Boolean(dbUser?.isAllowedToSignIn);
-    //       token.isActive = Boolean(dbUser?.isActive);
-    //     } else {
-    //       return null;
-    //     }
-
-    //     return token;
-    //   }, // JWT token
+      if (dbUser?.isAllowedToSignIn) {
+        token.id = String(dbUser?.id);
+        token.stripeCustomerId = String(dbUser?.stripeCustomerId);
+        token.isActive = Boolean(dbUser?.isActive);
+        token.addressesCount = Number(dbUser?.addressesCount);
+        token.allowedAddressesCount = Number(dbUser?.allowedAddressesCount);
+        token.isAdmin = Boolean(dbUser?.isAdmin);
+        return token;
+      } else {
+        return null;
+      }
+    },
   },
   events: {
     createUser: async ({ user }) => {
@@ -73,7 +72,7 @@ export const config = {
       await stripe.customers
         .create({
           email: user.email!,
-          name: user.name!,
+          name: user.name || undefined,
         })
         .then(async (customer) => {
           return prisma.user.update({
@@ -85,7 +84,7 @@ export const config = {
         });
     },
   },
-  // session: { strategy: "jwt" }, // JWT token
+  session: { strategy: "jwt" },
 } as NextAuthConfig;
 
 export const {

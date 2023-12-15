@@ -40,20 +40,22 @@ model Session {
 }
 
 model User {
-  id                String        @id @default(cuid())
-  createdAt         DateTime      @default(now())
-  updatedAt         DateTime      @default(now()) @updatedAt
-  name              String?
-  email             String?       @unique
-  emailVerified     DateTime?
-  image             String?
-  stripeCustomerId  String?       @unique
-  isActive          Boolean       @default(false)
-  isAllowedToSignIn Boolean       @default(true)
-  isAdmin           Boolean       @default(false)
-  accounts          Account[]
-  sessions          Session[]
-  EmailRoutes       EmailRoutes[]
+  id                    String        @id @default(cuid())
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @default(now()) @updatedAt
+  name                  String?
+  email                 String?       @unique
+  emailVerified         DateTime?
+  image                 String?
+  stripeCustomerId      String?       @unique
+  isActive              Boolean       @default(false)
+  addressesCount        Int           @default(0)
+  allowedAddressesCount Int           @default(0)
+  isAllowedToSignIn     Boolean       @default(true)
+  isAdmin               Boolean       @default(false)
+  accounts              Account[]
+  sessions              Session[]
+  EmailRoutes           EmailRoutes[]
 
   @@index([email])
 }
@@ -61,7 +63,7 @@ model User {
 model EmailRoutes {
   id          String   @id
   fromEmail   String   @unique
-  toEmail     String   @unique
+  toEmail     String
   description String
   created_at  DateTime @default(now())
   createdById String
