@@ -39,19 +39,16 @@ const webhookHandler = async (req: NextRequest) => {
     // getting to the data we want from the event
     const subscription = event.data.object as Stripe.Subscription;
 
-    // let pid = subscription.items.data[0].price.id;
+    let pid = subscription.items.data[0].price.id;
 
-    // let allowedAdressesBasedOnSubscription: number;
-
-    // if (pid === process.env.NEXT_PUBLIC_STRIPE_API_ID_FY) {
-    //   allowedAdressesBasedOnSubscription = 1;
-    // } else if (pid === process.env.NEXT_PUBLIC_STRIPE_API_ID_BY) {
-    //   allowedAdressesBasedOnSubscription = 3;
-    // } else if (pid === process.env.NEXT_PUBLIC_STRIPE_API_ID_EY) {
-    //   allowedAdressesBasedOnSubscription = 10;
-    // } else {
-    //   allowedAdressesBasedOnSubscription = 0;
-    // }
+    const allowedAdressesBasedOnSubscription: number =
+      pid === process.env.NEXT_PUBLIC_STRIPE_API_ID_FY
+        ? 1
+        : pid === process.env.NEXT_PUBLIC_STRIPE_API_ID_BY
+        ? 3
+        : pid === process.env.NEXT_PUBLIC_STRIPE_API_ID_EY
+        ? 10
+        : 0;
 
     switch (event.type) {
       case "customer.subscription.created":
@@ -63,7 +60,7 @@ const webhookHandler = async (req: NextRequest) => {
           // Update that customer so their status is now active
           data: {
             isActive: true,
-            allowedAddressesCount: 1,
+            allowedAddressesCount: allowedAdressesBasedOnSubscription,
           },
         });
         break;

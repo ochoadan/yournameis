@@ -15,12 +15,7 @@ export const POST = auth(async (req) => {
       );
     }
 
-    const userCreatedRoute = await prisma.emailRoutes.findMany({
-      where: {
-        createdById: req.auth.user.id,
-      },
-    });
-    if (userCreatedRoute.length > 0) {
+    if (req.auth.user.addressesCount >= req.auth.user.allowedAddressesCount) {
       return Response.json(
         { message: "You have already created a route" },
         { status: 403 }
@@ -62,13 +57,13 @@ export const POST = auth(async (req) => {
         fromEmail: `${name}@${requestDomain}`,
       },
     });
+
     if (routeExists) {
       return Response.json(
         { message: "Email route already exists, please try another name" },
         { status: 409 }
       );
     }
-
     const routeData = {
       priority: 20,
       description: "VirtuaByte Email route for " + req.auth.user.email,
@@ -80,7 +75,7 @@ export const POST = auth(async (req) => {
       const mailgunResponse = await mg.routes.create(routeData);
       const data = mailgunResponse as any;
 
-      const createdRoute = (await prisma.emailRoutes.create({
+      await prisma.emailRoutes.create({
         data: {
           id: `${name}@${requestDomain}`,
           fromEmail: `${name}@${requestDomain}`,
@@ -89,10 +84,14 @@ export const POST = auth(async (req) => {
           created_at: new Date(data.created_at),
           createdById: req.auth!.user.id,
         },
-      })) as any;
+      });
+      await prisma.user.update({
+        where: { id: req.auth!.user.id },
+        data: { addressesCount: req.auth!.user.addressesCount + 1 },
+      });
 
       return Response.json(
-        { message: "Email route created successfully", route: createdRoute },
+        { message: "Email route created successfully" },
         { status: 201 }
       );
     } catch (error) {

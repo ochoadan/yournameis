@@ -15,15 +15,15 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({
   tier,
 }) => {
   const router = useRouter();
-  let productId = "";
-
-  if (tier === 1) {
-    productId = process.env.NEXT_PUBLIC_STRIPE_API_ID_FY!;
-  } else if (tier === 2) {
-    productId = process.env.NEXT_PUBLIC_STRIPE_API_ID_BY!;
-  } else if (tier === 3) {
-    productId = process.env.NEXT_PUBLIC_STRIPE_API_ID_EY!;
-  }
+  const productId = (() => {
+    if (tier === 1) {
+      return process.env.NEXT_PUBLIC_STRIPE_API_ID_FY!;
+    } else if (tier === 2) {
+      return process.env.NEXT_PUBLIC_STRIPE_API_ID_BY!;
+    } else if (tier === 3) {
+      return process.env.NEXT_PUBLIC_STRIPE_API_ID_EY!;
+    }
+  })();
 
   const handleCreateCheckoutSession = async (productId: string) => {
     try {
@@ -66,7 +66,7 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({
     <>
       <button
         className={className}
-        onClick={() => handleCreateCheckoutSession(productId)}
+        onClick={() => handleCreateCheckoutSession(productId!)}
       >
         {children}
       </button>

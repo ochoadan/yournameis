@@ -12,7 +12,7 @@ const Page = async () => {
     <>
       <div className="divide-y divide-gray-200 bg-white shadow sm:rounded-xl">
         {session?.user.isActive ? (
-          <CreateEmail domainsData={domainsData} routesData={routesData} />
+          <CreateEmail domainsData={domainsData} routesData={routesData} session={session} />
         ) : (
           <div className="p-4">
             <h1 className="text-2xl font-semibold text-gray-900">
