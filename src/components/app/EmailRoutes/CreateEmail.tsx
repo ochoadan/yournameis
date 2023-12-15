@@ -56,9 +56,11 @@ const CreateEmail = ({
       });
       if (response.status === 201) {
         console.log("Success:", await response);
+        setAppCreate(false);
         router.refresh();
         return;
       } else {
+        setAppCreate(false);
         console.log("Error:", await response);
         return;
       }
@@ -83,7 +85,7 @@ const CreateEmail = ({
         <div className="flex-shrink-0">
           {/* TODO: Investigate: Somehow this doens't do what i desire but > does: session?.user.addressesCount >= session?.user.allowedAddressesCount */}
           {!appCreate &&
-            session?.user.addressesCount >
+            session?.user.addressesCount <
               session?.user.allowedAddressesCount && (
               <button
                 onClick={() => setAppCreate(true)}
@@ -97,7 +99,7 @@ const CreateEmail = ({
       </div>
       {/* TODO: Investigate: Somehow this doens't do what i desire but > does: session?.user.addressesCount >= session?.user.allowedAddressesCount */}
       {appCreate &&
-        session?.user.addressesCount > session?.user.allowedAddressesCount && (
+        session?.user.addressesCount < session?.user.allowedAddressesCount && (
           <form action={handleSubmit}>
             <div className="mx-4 lg:mx-8 my-4 flex-wrap items-center justify-between md:flex">
               <div className="flex space-x-2 mt-4">
