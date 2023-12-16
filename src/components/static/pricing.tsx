@@ -4,6 +4,7 @@ import Link from "next/link";
 
 interface PricingTier {
   title: string;
+  description: string;
   price: string;
   features: string[];
   buttonText: string;
@@ -18,6 +19,7 @@ const includedFeatures = [
 const pricingTiers: PricingTier[] = [
   {
     title: "Freelancer",
+    description: "The essentials to get you started",
     price: "$20",
     features: [
       "1 Email Forwarding",
@@ -30,6 +32,7 @@ const pricingTiers: PricingTier[] = [
   },
   {
     title: "Partnership",
+    description: "For one to three family members",
     price: "$35",
     features: [
       "3 Emails Forwarding",
@@ -43,6 +46,7 @@ const pricingTiers: PricingTier[] = [
   },
   {
     title: "Family",
+    description: "For one to ten family members",
     price: "$60",
     features: [
       "10 Emails Forwarding",
@@ -67,7 +71,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ tier }) => {
       <h3 className="text-gray-900 text-lg font-semibold leading-8">
         {tier.title}
       </h3>
-      <p className="text-gray-600 mt-4 text-sm leading-6">Planned!</p>
+      <p className="text-gray-600 mt-4 text-sm leading-6">{tier.description}</p>
       <p className="mt-6 flex items-baseline gap-x-1">
         <span className="text-gray-900 text-4xl font-bold tracking-tight">
           {tier.price}
