@@ -21,22 +21,35 @@ export async function POST() {
     );
   }
 
-  const checkoutSession = await stripe.billingPortal.sessions.create({
-    customer: session.user.stripeCustomerId,
-    return_url: `${process.env.NEXTAUTH_URL}/billing`,
-  });
+  try {
+    const checkoutSession = await stripe.billingPortal.sessions.create({
+      customer: session.user.stripeCustomerId,
+      return_url: `${process.env.NEXTAUTH_URL}/billing`,
+    });
 
-  if (!checkoutSession.url) {
+    if (!checkoutSession.url) {
+      return NextResponse.json(
+        {
+          error: {
+            code: "stripe-error",
+            message: "Could not create checkout session",
+          },
+        },
+        { status: 500 }
+      );
+    }
+    console.log(checkoutSession);
+
+    return NextResponse.json({ session: checkoutSession }, { status: 200 });
+  } catch (error) {
     return NextResponse.json(
       {
         error: {
           code: "stripe-error",
-          message: "Could not create checkout session",
+          message: error,
         },
       },
       { status: 500 }
     );
   }
-
-  return NextResponse.json({ session: checkoutSession }, { status: 200 });
 }
