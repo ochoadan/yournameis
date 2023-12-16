@@ -108,7 +108,10 @@ const Billing = async () => {
         {session?.user.isActive ? (
           <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-02 flex-wrap items-center justify-between sm:flex-nowrap">
             <div className="mx-auto max-w-3xl sm:text-center">
-              <PortalButton className="bg-sky-600 w-full text-white shadow-sm hover:bg-sky-500 focus-visible:outline-sky-600 mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+              <PortalButton
+                session={session}
+                className="bg-sky-600 w-full text-white shadow-sm hover:bg-sky-500 focus-visible:outline-sky-600 mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              >
                 Manage Subscription
               </PortalButton>
               <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
