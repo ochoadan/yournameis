@@ -1,25 +1,32 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import stripe from "@/utils/stripe";
+import getStripe from "@/utils/getStripe";
 
 interface CheckoutButtonProps {
   className: string;
   children: string;
-  session: any;
 }
 
 const CheckoutButton: React.FC<CheckoutButtonProps> = ({
   className,
   children,
-  session,
 }) => {
+  const router = useRouter();
+
   const handleCreateCheckoutSession = async () => {
     try {
-      await stripe.billingPortal.sessions.create({
-        customer: session.user.stripeCustomerId,
-        return_url: `${process.env.NEXTAUTH_URL}/billing`,
+      const res = await fetch(`/api/stripe/billing-portal`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
+
+      if (res.status === 401) {
+        router.push("/signin");
+        return;
+      }
     } catch (error: any) {
       console.error("An error occurred:", error.message);
     }
