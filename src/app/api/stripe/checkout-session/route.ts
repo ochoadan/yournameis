@@ -52,6 +52,7 @@ export async function POST(req: NextRequest) {
         quantity: 1,
       },
     ],
+    allow_promotion_codes: true,
     success_url:
       process.env.NEXTAUTH_URL + `/dashboard?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.NEXTAUTH_URL}/billing`,
