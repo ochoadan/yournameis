@@ -21,8 +21,8 @@ export default async function Hero() {
           </h1>
         </div>
         <EmailAvailableForm domainsData={domainsData} />
-        <div className="flex mt-2 justify-center lg:justify-start">
-          Sign in to Create your email or request a new domain.
+        <div className="flex mt-4 justify-center lg:justify-start">
+          Sign in to create an email route.
         </div>
       </div>
       <div className="col-span-5 hidden lg:block">
@@ -31,7 +31,6 @@ export default async function Hero() {
           alt="Email Magnet Animation"
           width={500}
           height={500}
-          // className="-my-16 lg:pt-8"
         />
       </div>
     </div>
