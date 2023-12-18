@@ -101,9 +101,8 @@ export const POST = auth(async (req) => {
       });
       await prisma.user.update({
         where: { id: req.auth!.user.id },
-        data: { addressesCount: req.auth!.user.addressesCount + 1 },
+        data: { addressesCount: { increment: 1 } },
       });
-
       return Response.json(
         { message: "Email route created successfully" },
         { status: 201 }
