@@ -106,7 +106,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ tier }) => {
 
 export default function Pricing() {
   return (
-    <div className="bg-white py-24 sm:py-32" id="pricing">
+    <div className="bg-white pt-12 sm:pt-24" id="pricing">
       <div className="mx-auto max-w-8xl px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
