@@ -50,6 +50,13 @@ const webhookHandler = async (req: NextRequest) => {
         ? 10
         : 0;
 
+    let activationHandler: boolean;
+    if (allowedAdressesBasedOnSubscription === 0) {
+      activationHandler = false;
+    } else {
+      activationHandler = true;
+    }
+
     switch (event.type) {
       case "customer.subscription.created":
         await prisma.user.update({
@@ -59,7 +66,7 @@ const webhookHandler = async (req: NextRequest) => {
           },
           // Update that customer so their status is now active
           data: {
-            isActive: true,
+            isActive: activationHandler,
             allowedAddressesCount: allowedAdressesBasedOnSubscription,
           },
         });
@@ -85,6 +92,7 @@ const webhookHandler = async (req: NextRequest) => {
           },
           // Update that customer so their status is now active
           data: {
+            isActive: activationHandler,
             allowedAddressesCount: allowedAdressesBasedOnSubscription,
           },
         });
