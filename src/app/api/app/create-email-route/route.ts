@@ -22,7 +22,22 @@ export const POST = auth(async (req) => {
       );
     }
 
-    const { name, domain: requestDomain } = await req.json();
+    const {
+      name,
+      domain: requestDomain,
+      toEmail: requestToEmail,
+    } = await req.json();
+
+    const validEmailRegex = /^[a-zA-Z0-9.]{2,}@[a-zA-Z0-9]+(\.[a-zA-Z]{2,})+$/;
+    let appToEmail = requestToEmail;
+    if (appToEmail && !validEmailRegex.test(appToEmail as string)) {
+      return Response.json(
+        { message: "Invalid email address to forward to." },
+        { status: 422 }
+      );
+    } else if (!appToEmail) {
+      appToEmail = req.auth.user.email;
+    }
 
     if (!name || !requestDomain) {
       return Response.json(
@@ -30,7 +45,6 @@ export const POST = auth(async (req) => {
         { status: 422 }
       );
     }
-
     const domainExists = await prisma.domains.findUnique({
       where: {
         domain: requestDomain as string,
@@ -68,7 +82,7 @@ export const POST = auth(async (req) => {
       priority: 20,
       description: "YourNameIs Email route for " + req.auth.user.email,
       expression: `match_recipient("${name}@${requestDomain}")`,
-      action: [`forward("${req.auth.user.email}")`, "stop()"],
+      action: [`forward("${appToEmail}")`, "stop()"],
     };
 
     try {
@@ -79,7 +93,7 @@ export const POST = auth(async (req) => {
         data: {
           id: `${name}@${requestDomain}`,
           fromEmail: `${name}@${requestDomain}`,
-          toEmail: req.auth!.user.email,
+          toEmail: appToEmail,
           description: data.description,
           created_at: new Date(data.created_at),
           createdById: req.auth!.user.id,

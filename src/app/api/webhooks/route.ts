@@ -77,6 +77,19 @@ const webhookHandler = async (req: NextRequest) => {
           },
         });
         break;
+      case "customer.subscription.updated": {
+        await prisma.user.update({
+          // Find the customer in our database with the Stripe customer ID linked to this purchase
+          where: {
+            stripeCustomerId: subscription.customer as string,
+          },
+          // Update that customer so their status is now active
+          data: {
+            allowedAddressesCount: allowedAdressesBasedOnSubscription,
+          },
+        });
+        break;
+      }
       default:
         console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`);
         break;
