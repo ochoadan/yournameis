@@ -47,7 +47,7 @@ const pricingTiers: PricingTier[] = [
   {
     title: "Family",
     description: "For one to ten family members",
-    price: "$60",
+    price: "$80",
     features: [
       "10 Emails Forwarding",
       "Mailbox (Planned)",
