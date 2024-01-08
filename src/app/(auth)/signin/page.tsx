@@ -21,7 +21,7 @@ export default async function Example() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <Logo className="mx-auto h-12 w-auto text-sky-600" />
         <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Continue to your account
+          Sign-in or Create an Account
         </h2>
       </div>
       <SigninAuthUserForm />

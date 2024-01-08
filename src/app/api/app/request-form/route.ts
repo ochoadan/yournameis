@@ -16,7 +16,7 @@ export const POST = auth(async (request) => {
     });
     let mailOptions = {
       from: "contact-form@halfnine.com",
-      to: "dan@halfnine.tech",
+      to: "diogamb@gmail.com",
       subject: `Domain Request From: ${request.auth.user?.name}`,
       text: lastname + " | Sent from: " + request.auth.user?.email,
       html: `<div>Message From: ${
