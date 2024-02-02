@@ -7,6 +7,16 @@ const inter = Mulish({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "YourNameIs",
   description: "YourNameIs provides business email for individuals.",
+  openGraph: {
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 628,
+        alt: "Og Image Alt"
+      }
+    ]
+  }
 };
 
 export default function RootLayout({

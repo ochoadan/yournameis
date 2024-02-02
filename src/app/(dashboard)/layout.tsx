@@ -7,16 +7,6 @@ import { redirect } from "next/navigation";
 export const metadata: Metadata = {
   title: "Dashboard",
   description: "Dashboard for YourNameIs.",
-  openGraph: {
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 628,
-        alt: "Og Image Alt"
-      }
-    ]
-  }
 };
 
 const Page = async ({ children }: { children: React.ReactNode }) => {
