@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://yourname.is/og-image.jpg",
         width: 1200,
         height: 628,
         alt: "Og Image Alt"
