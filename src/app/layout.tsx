@@ -7,6 +7,9 @@ const inter = Mulish({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "YourNameIs",
   description: "YourNameIs provides business email for individuals.",
+  twitter: {
+    creator: "@halfnine"
+  },
   openGraph: {
     images: [
       {

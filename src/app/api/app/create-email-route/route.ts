@@ -109,13 +109,26 @@ export const POST = auth(async (req) => {
       );
     } catch (error) {
       // await mg.routes.destroy(`${name}@${requestDomain}`);
+      await prisma.errorLog.create({
+        data: {
+          message: JSON.stringify(error),
+          createdBy: req.auth!.user.id || "",
+        }
+      });
 
       return Response.json(
-        { message: "Email route create error" },
+        { message: "Email route create error", error: error },
         { status: 400 }
       );
     }
   } catch (error) {
+    await prisma.errorLog.create({
+      data: {
+        message: JSON.stringify(error),
+        createdBy: req.auth!.user.id || "",
+      }
+    });
+
     return Response.json({ error: error }, { status: 500 });
   }
 }) as any;
