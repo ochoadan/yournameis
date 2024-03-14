@@ -4,6 +4,7 @@ import Link from "next/link";
 import SigninButton from "../SigninButton";
 import { Logo } from "../Logo";
 import CustomLink from "@/components/custom-link";
+import { FullLogo } from "../FullLogo";
 
 const navigation = [
   { name: "Pricing", href: "#pricing" },
@@ -20,10 +21,10 @@ const Appbar = () => {
       <div className="flex lg:flex-1">
         <Link href="/" className="-m-1.5 p-1.5">
           <span className="sr-only">YourNameIs</span>
-          <Logo className="h-8 w-auto" />
+          <FullLogo className="h-8 w-auto" />
         </Link>
       </div>
-      <div className="hidden lg:flex lg:gap-x-12">
+      {/* <div className="hidden lg:flex lg:gap-x-12">
         {navigation.map((item) => (
           <CustomLink
             key={item.name}
@@ -33,7 +34,7 @@ const Appbar = () => {
             {item.name}
           </CustomLink>
         ))}
-      </div>
+      </div> */}
       <SigninButton />
     </nav>
   );

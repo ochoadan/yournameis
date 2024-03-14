@@ -70,6 +70,19 @@ const EmailAvailableForm = ({ domainsData: domains }: EmailFormsProps) => {
   return (
     <>
       <form action={handleSubmit}>
+        {/* <input
+          type="email"
+          id="subcribe"
+          name="email"
+          className="py-4 pe-40 ps-6 w-full h-[50px] outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 shadow dark:shadow-gray-800"
+          placeholder="Your Email Address :"
+        />
+        <button
+          type="submit"
+          className="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center absolute top-[2px] end-[3px] h-[46px] bg-indigo-600 hover:bg-indigo-700 border border-indigo-600 hover:border-indigo-700 text-white rounded-full"
+        >
+          Try it for free <i className="uil uil-arrow-right"></i>
+        </button> */}
         <div className="flex space-x-2 mt-4 max-w-2xl mx-auto lg:mx-0">
           <div className="w-1/2 min-w-0 flex-1 relative">
             <label

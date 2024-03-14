@@ -1,3 +1,4 @@
+import { fluidExtractor, fluidCorePlugins, defaultThemeScreensInRems, defaultThemeFontSizeInRems } from 'fluid-tailwind'
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -7,6 +8,8 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontSize: defaultThemeFontSizeInRems,
+    screens: defaultThemeScreensInRems,
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -18,6 +21,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"), fluidCorePlugins],
+  extract: fluidExtractor(),
 };
 export default config;
