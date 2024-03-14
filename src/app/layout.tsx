@@ -68,7 +68,7 @@ function Banner() {
         />
       </div>
       <p className="text-sm leading-6 text-gray-900">
-        We are migrating and Upgrading our Application, To create an email route{' '}
+        We are Migrating and Upgrading our Application, To create an email route{' '}
         <Link href="https://www.halfnine.com/contact" target="_blank" className="whitespace-nowrap font-semibold">
           Contact Support &nbsp;<span aria-hidden="true">&rarr;</span>
         </Link>

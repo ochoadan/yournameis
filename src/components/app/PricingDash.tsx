@@ -99,7 +99,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ tier }) => {
   );
 };
 
-const PricingDashboard = () => {
+export default function PricingDashboard() {
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-02 flex-wrap items-center justify-between sm:flex-nowrap">
       <div className="mx-auto max-w-2xl sm:text-center">
@@ -114,47 +114,4 @@ const PricingDashboard = () => {
       </div>
     </div>
   );
-};
-
-const Billing = async () => {
-  const session = await auth();
-
-  return (
-    <>
-      <div className="border-b border-gray-200 bg-white px-4 py-5 sm:px-6 shadow rounded-lg">
-        {session?.user.isActive ? (
-          <div className="sm:flex sm:items-start sm:justify-between">
-            <div>
-              <h3 className="text-base font-semibold leading-6 text-gray-900">
-                Manage subscription
-              </h3>
-              <div className="mt-2 max-w-xl text-sm text-gray-500">
-                <p>Your account is active, no action required. </p>
-              </div>
-            </div>
-            <div className="mt-5 sm:ml-6 sm:mt-0 sm:flex sm:flex-shrink-0 sm:items-center">
-              <PortalButton className="inline-flex items-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
-                Manage plan
-              </PortalButton>
-            </div>
-          </div>
-        ) : (
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-02 flex-wrap items-center justify-between sm:flex-nowrap">
-            <div className="mx-auto max-w-2xl sm:text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Pick the plan that’s right for you
-              </h2>
-            </div>
-            <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-              {pricingTiers.map((tier) => (
-                <PricingCard key={tier.title} tier={tier} />
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </>
-  );
-};
-
-export default Billing;
+}

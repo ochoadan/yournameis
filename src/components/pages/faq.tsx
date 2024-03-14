@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     question: "What is the pricing for YourNameIs?",
-    answer: "The pricing for YourNameIs is $10 per month, and you can cancel anytime. This pricing at least twice as competitive than registering a domain and getting email services from a domain registrar.",
+    answer: "The pricing for YourNameIs starts at $10 per month, and you can cancel anytime. This pricing at least twice as competitive than registering a domain and getting email services from a domain registrar.",
   },
   {
     question: "What are the features of YourNameIs?",

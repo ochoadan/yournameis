@@ -34,7 +34,8 @@ const PagesNav = ({ session }: { session: any }) => {
   return (
     <>
       <Linkx href="/dashboard">Dashboard</Linkx>
-      <Linkx href="/billing">Billing</Linkx>
+      {/* <Linkx href="/billing">Billing</Linkx> */}
+      {session?.user?.isActive && <Linkx href="/billing">Billing</Linkx>}
       {session?.user?.isAdmin && <Linkx href="/admin">Admin</Linkx>}
     </>
   );
@@ -127,7 +128,7 @@ const AppBarNav = () => {
                         </p>
                       </div>
                       <div className="py-1">
-                        <Menu.Item>
+                        {/* <Menu.Item>
                           {({ active }) => (
                             <Link
                               href="/request"
@@ -141,7 +142,7 @@ const AppBarNav = () => {
                               Request
                             </Link>
                           )}
-                        </Menu.Item>
+                        </Menu.Item> */}
                         <Menu.Item>
                           {({ active }) => (
                             <Link

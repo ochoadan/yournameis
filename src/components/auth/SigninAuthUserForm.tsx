@@ -25,8 +25,8 @@ export default function SigninAuthUserForm() {
   };
 
   return (
-    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px] mb-24">
-      <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+    <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-[480px] mb-24">
+      <div className="px-6 py-12 sm:rounded-lg sm:px-12">
         <div className="space-y-6">
           <div className="relative">
             <label
@@ -52,14 +52,12 @@ export default function SigninAuthUserForm() {
               />
             </div>
           </div>
-          <div>
             <button
               onClick={handleSignIn}
               className=" flex w-full justify-center rounded-md bg-sky-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
             >
-              Sign in
+              Continue
             </button>
-          </div>
           {isClicked && (
             <div className="rounded-md bg-red-50 p-4">
               <div className="flex justify-center">
@@ -79,7 +77,7 @@ export default function SigninAuthUserForm() {
           )}
 
           <div>
-            <div className="relative mt-10">
+            <div className="relative mt-6">
               <div
                 className="absolute inset-0 flex items-center"
                 aria-hidden="true"
@@ -87,7 +85,7 @@ export default function SigninAuthUserForm() {
                 <div className="w-full border-t border-gray-200" />
               </div>
               <div className="relative flex justify-center text-sm font-medium leading-6">
-                <span className="bg-white px-6 text-gray-900">
+                <span className="bg-gray-50 px-6 text-gray-900">
                   Or continue with
                 </span>
               </div>
