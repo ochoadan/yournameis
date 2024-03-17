@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     allow_promotion_codes: true,
     success_url:
       process.env.NEXTAUTH_URL + `/dashboard?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${process.env.NEXTAUTH_URL}/billing`,
+    cancel_url: `${process.env.NEXTAUTH_URL}/dashboard`,
     subscription_data: {
       metadata: {
         // so that we can manually check in Stripe for whether a customer has an active subscription later, or if our webhook integration breaks.

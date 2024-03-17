@@ -27,7 +27,7 @@ const faqs = [
 ];
 const GlobalFAQ = () => {
   return (
-    <div className="mx-auto max-w-5xl mb-20">
+    <div className="mx-auto max-w-6xl mb-20">
       <div className="text-3xl font-extrabold leading-10 text-gray-900">
         <h2>Frequently asked questions:</h2>
         <hr className="border-sky-600 opacity-90 border-b-[2px] w-20 my-2" />

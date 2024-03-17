@@ -61,13 +61,14 @@ model User {
 }
 
 model EmailRoutes {
-  id          String   @id
-  fromEmail   String   @unique
-  toEmail     String
-  description String
-  created_at  DateTime @default(now())
-  createdById String
-  createdBy   User     @relation(fields: [createdById], references: [id])
+  id              String   @id
+  active          Boolean  @default(true)
+  fromEmail       String   @unique
+  toEmail         String
+  description     String
+  created_at      DateTime @default(now())
+  createdById     String
+  createdBy       User     @relation(fields: [createdById], references: [id])
 }
 
 model Domains {
