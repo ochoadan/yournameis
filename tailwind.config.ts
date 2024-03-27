@@ -1,4 +1,9 @@
-import { fluidExtractor, fluidCorePlugins, defaultThemeScreensInRems, defaultThemeFontSizeInRems } from 'fluid-tailwind'
+import {
+  fluidExtractor,
+  fluidCorePlugins,
+  defaultThemeScreensInRems,
+  defaultThemeFontSizeInRems,
+} from "fluid-tailwind";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -17,11 +22,15 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       maxWidth: {
-        '8xl': '88rem',
+        "8xl": "88rem",
       },
     },
   },
-  plugins: [require("@tailwindcss/forms"), fluidCorePlugins],
+  plugins: [
+    require("@tailwindcss/forms"),
+    fluidCorePlugins,
+    require("@tailwindcss/typography"),
+  ],
   extract: fluidExtractor(),
 };
 export default config;
