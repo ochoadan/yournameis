@@ -54,13 +54,13 @@ const Page = () => {
           <div className="relative isolate overflow-hidden sm:px-6 lg:px-8 py-20 sm:rounded-3xl sm:py-24 lg:py-12 xl:pr-24">
             <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-y-0">
               <div className="lg:row-start-2 lg:max-w-md">
-                <h2 className="text-3xl font-bold tracking-tight dark:text-white sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                   {/* Directly into your personal inbox. */}
                   Deliver into personal inbox.
                   {/* <br />
                   Start using our app today. */}
                 </h2>
-                <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+                <p className="mt-6 text-lg leading-8 text-gray-600">
                   No need to check multiple email accounts. Get all your email
                   in one place.
                 </p>
@@ -74,10 +74,10 @@ const Page = () => {
                 quality={81}
               />
               <div className="max-w-xl lg:row-start-3 lg:mt-10 lg:max-w-md lg:border-t lg:border-white/10 lg:pt-10">
-                <dl className="max-w-xl space-y-8 text-base leading-7 text-gray-700 dark:text-gray-300 lg:max-w-none">
+                <dl className="max-w-xl space-y-8 text-base leading-7 text-gray-700 lg:max-w-none">
                   {features.map((feature) => (
                     <div key={feature.name} className="relative">
-                      <dt className="ml-9 inline-block font-semibold text-black dark:text-white">
+                      <dt className="ml-9 inline-block font-semibold text-black">
                         <feature.icon
                           className="absolute left-1 top-1 h-5 w-5 text-sky-500"
                           aria-hidden="true"
