@@ -6,6 +6,8 @@ import Script from "next/script";
 
 const sourceFont = Wix_Madefor_Display({ subsets: ["latin"] });
 
+export const runtime = 'edge';
+
 export const metadata: Metadata = {
   title: "YourNameIs",
   description: "YourNameIs provides business email for individuals.",
